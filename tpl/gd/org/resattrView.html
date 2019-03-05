@@ -1,0 +1,327 @@
+
+<div class="modal-header-without-border-bottom">
+    <div class="col-md-4">
+        <!--<h3 class="modal-title ">查看用户</h3>-->
+    </div>
+    <div>
+        <ul id="userViewTab" class="nav nav-tabs">
+            <li class="active"><a data-target ="#basicInfo" data-toggle="tab">{{'deviceInfo'|translate}}</a></li>
+            <li><a data-target ="#accountInfo" data-toggle="tab">{{'useraddress'|translate}}</a></li>
+            <li><a data-target="#avator" data-toggle="tab">{{'fanyi314'|translate}}</a> </li>
+        </ul>
+    </div>
+</div>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active " id="basicInfo">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi212'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.ResID"  disabled>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi291'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.DeviceID" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi315'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.ProtocolType" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi341'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.name" disabled>
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi284'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Manufacturer" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi285'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Model" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi316'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Status" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>平台ID{{'fanyi320'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.PlatformID" disabled>
+                    </div>
+                </div><div class="form-group">
+                <div class="col-md-3">
+                    <label>{{'fanyi315'|translate}}</label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" ng-model="res.ResType" disabled>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi318'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Parental" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi319'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.ParentID" disabled>
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="viewVm.cancel()">{{'fanyi46'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="tab-pane fade " id="accountInfo">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi82'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.UsrName" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi83'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Password" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'ipaddress'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.IPAddress" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi137'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Address" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi283'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Port" disabled>
+                    </div>
+                </div>
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="viewVm.cancel()">{{'fanyi46'|translate}}</button>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="avator">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi321'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Owner" disabled>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi280'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.CivilCode" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi142'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Block" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi143'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Longitude" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi144'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Latitude" disabled>
+                    </div>
+                </div>
+              <div class="form-group">
+                <div class="col-md-3">
+                    <label>{{'fanyi322'|translate}}</label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" ng-model="res.SipServiceID" disabled>
+                </div>
+            </div><div class="form-group">
+                <div class="col-md-3">
+                    <label>{{'fanyi323'|translate}}</label>
+                </div>
+
+                <div class="col-md-9">
+                    <input type="text" class="form-control" ng-model="res.GuardFlag" disabled>
+                </div>
+            </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi324'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.SafetyWay" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi325'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.RegisterWay" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi326'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.CertNum" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi327'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Certifiable" disabled >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi328'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.ErrCode" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi329'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.EndTime" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>{{'fanyi139'|translate}}</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="res.Secrecy" disabled>
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="viewVm.cancel()">{{'fanyi46'|translate}}</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

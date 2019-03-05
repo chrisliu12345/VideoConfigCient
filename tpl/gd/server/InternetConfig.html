@@ -1,0 +1,51 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'netconfig'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi389'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select ng-model="inter.card" class="form-control">
+                    <option ng-repeat="x in card" value="{{x.value}}">{{x.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi282'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="inter.IPAddress">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi390'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="inter.Port"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi391'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="inter.TimeOut">
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="IntVm.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="IntVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>

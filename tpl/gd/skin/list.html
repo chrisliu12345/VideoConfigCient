@@ -1,0 +1,17 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <div ng-controller="SkinCtrl" class="skinSelectBox">
+        <form name="myForm">
+            <label for="mySelect">选择皮肤:</label>
+            <select name="mySelect" id="mySelect"
+                    ng-options="option.name for option in data.availableOptions track by option.id"
+                    ng-model="data.selectedOption"
+                    ng-change="update()"
+            ></select>
+        </form>
+        <hr>
+        <tt>当前选中皮肤：{{data.selectedOption.name}}</tt><br/>
+    </div>
+</div>

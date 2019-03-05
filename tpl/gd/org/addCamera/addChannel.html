@@ -1,0 +1,198 @@
+<form name="form1" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">{{'fanyi183'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+          <div class="col-md-3">
+              <!-- <label>摄像机ID</label>-->
+           </div>
+
+           <div class="col-md-9">
+               <input type="hidden" class="form-control" ng-model="channel_camid">
+                <!--<select class="form-control" ng-model="camera.ResID" ng-options="x for x in site1">
+                </select>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi184'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+             <input type="text" class="form-control" ng-model="channel_NvrID"  disabled>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi185'|translate}}</label>
+            </div>
+
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="channel.NvrChannelID"  ng-change="addChannelVm.select()" >
+                    <option ng-repeat="x in site1" value="{{x}}">{{x}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi186'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="maliu"  ng-change="addChannelVm.select()">
+                    <option value="0">1：{{'fanyi187'|translate}}</option>
+                    <option value="1">2：{{'fanyi188'|translate}}</option>
+                </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi189'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="channel.UseType" ng-init="channel.UseType='1'">
+                    <option value="1">1：{{'fanyi190'|translate}}</option>
+                    <option value="2">2：{{'fanyi191'|translate}}</option>
+                    <option value="3">3：{{'fanyi192'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi193'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.PlayUrl" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi194'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.FrameRate" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi195'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--  <input type="text" class="form-control" ng-model="channel.BitRateType" >-->
+                <select class="form-control" ng-model="channel.BitRateType" ng-init="channel.BitRateType=''">
+                    <option value=""></option>
+                    <option value="CBR">“CBR”：{{'fanyi196'|translate}}</option>
+                    <option value="VBR">“VBR”：{{'fanyi197'|translate}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi198'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.BitRate"  >
+            </div>
+        </div>
+
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi177'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.Resolution" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi199'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioFlag" ng-init="channel.AudioFlag='0'">
+                    <option value=""></option>
+                    <option value="0">0：{{'fanyi200'|translate}}</option>
+                    <option value="1">1：{{'fanyi201'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi202'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioEncoderType" ng-init="channel.AudioEncoderType=''">
+                    <option value=""></option>
+                    <option value="1">1: G.711</option>
+                    <option value="2">2: G.723.1</option>
+                    <option value="3">3: G.729</option>
+                    <option value="4">4: G.722.1</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi203'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioBitRate" ng-init="channel.AudioBitRate=''">
+                    <option value=""></option>
+                    <option value="1">1: 5.3kbps</option>
+                    <option value="2">2: 6.3kbps</option>
+                    <option value="3">3: 8kbps</option>
+                    <option value="4">4: 16kbps</option>
+                    <option value="5">5: 24kbps</option>
+                    <option value="6">6: 32kbps</option>
+                    <option value="7">7: 48kbps</option>
+                    <option value="8">8: 64kbps</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>{{'fanyi204'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioSampleRate" ng-init="channel.AudioSampleRate=''">
+                    <option value=""></option>
+                    <option value="1">1: 8kHZ</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div align="left" >&nbsp;&nbsp;&nbsp;
+        <button class="btn  btn-sm btn-info" type="button"  ng-click="gaoji()" >{{'fanyi181'|translate}}</button>
+        <button class="btn  btn-sm btn-success" type="button"  ng-click="zhedie()">{{'fanyi182'|translate}}</button>
+
+    </div>
+    <div class="modal-footer" >
+        <button class="btn btn-danger" type="button"  ng-click="addChannelVm.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-sm  btn-primary" type="button" ng-click="addChannelVm.cancel()">{{'fanyi46'|translate}}</button>
+
+    </div>
+
+</form>

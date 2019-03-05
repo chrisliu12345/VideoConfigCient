@@ -1,0 +1,88 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <div class="wrapper-md" ng-controller="ServerCtrl as showCase">
+        <div class="container ">
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'nowloginperson'|translate}}:{{person}}{{'person1'|translate}}
+                    </h2>
+                    <h3>
+                        {{'sumperson'|translate}}:{{radio}}{{'person1'|translate}}
+                    </h3>
+
+                    <p>
+                    <div>
+                    <button  id="fat-btn" class="btn btn-primary" ng-click="showCase.reflashNumber()" ng-disabled="isDisabled"><span class="glyphicon glyphicon-repeat">&nbsp;{{'refsash'|translate}}</span></button>
+                    </div>
+                    </p>
+                </div>
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'upssl'|translate}}
+                    </h2>
+                    <p>
+                        {{'neirong1'|translate}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-info" ng-click="showCase.uploadlog()"><span class="glyphicon glyphicon-download-alt">&nbsp;{{'upssl'|translate}}</span></button>
+                    </p>
+                </div>
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'downssl'|translate}}
+                    </h2>
+                    <p>
+                        {{'neirong2'|translate}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-success" ng-click="showCase.ntpconfig()"><span class="glyphicon glyphicon-cog">&nbsp;{{'downssl'|translate}}</span></button>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <div class="container">
+            <div class="row clearfix">
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'netconfig'|translate}}
+                    </h2>
+                    <p>
+                        {{'neirong3'|translate}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn  btn-warning" ng-click="showCase.Intconfig()"><span class="glyphicon glyphicon-cloud">&nbsp;{{'startconfig'|translate}}</span></button>
+                    </p>
+                </div>
+
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'servconfig'|translate}}
+                    </h2>
+                    <p>
+                        {{'neirong4'|translate}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-inverse" ng-click="showCase.Mediaconfig()"><span class="glyphicon glyphicon-facetime-video">&nbsp;{{'startconfig'|translate}}</span></button>
+                    </p>
+                </div>
+                <div class="col-md-4 column">
+                    <h2>
+                        {{'sercview'|translate}}
+                    </h2>
+                    <p>
+                        {{'neirong5'|translate}}
+                    </p>
+                    <p>
+                        <button type="button" class="btn btn-danger" ng-click="showCase.Sipconfig()"><span class="glyphicon glyphicon-inbox">&nbsp;{{'queryService'|translate}}</span></button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

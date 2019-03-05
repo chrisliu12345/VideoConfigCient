@@ -1,0 +1,197 @@
+<form name="myForm" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">新增DVR设备</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+               <!-- <label>设备类型</label>-->
+            </div>
+            <div class="col-md-9">
+                <input type="hidden" class="form-control" ng-model="deviceType" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>设备名称</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Name"  placeholder="必填" required>
+            </div>
+        </div>
+      <!--  <div class="form-group">
+            <div class="col-md-3">
+                <label>设备SIPID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.DeviceID" ng-maxlength="20"
+                       ng-minlength="20" name="DeviceID"  placeholder="不能为空！只能为20位数字" required>
+
+               <div class="error" ng-show="myForm.DeviceID.$dirty && myForm.DeviceID.$invalid"
+                     style="color:#F00">
+                    <small class="error" ng-show="myForm.DeviceID.$error.minlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.maxlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.required">不能为空</small>
+                </div>
+            </div>
+        </div>-->
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>接入方式</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.config" ng-init="res.config='0'"
+
+                        ng-change="addVm.select_config()" required>
+                    <option value="0"></option>
+                    <option value="HIK">1：海康</option>
+                    <option value="DH">2：大华</option>
+                    <option value="UNIVIEW">3：宇视</option>
+                    <option value="ONVIF">4: ONVIF</option>
+                    <option value="SIP">5:GB/T-28181</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>所属平台</label>
+            </div>
+            <div class="col-md-9">
+                <select ng-model="res.PlatformID" class="form-control" ng-init="res.PlatformID='1'" required>
+                    <option ng-repeat="x in items" value="{{x.PlatformId}}">{{x.PlatformName}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>行政区划</label>
+            </div>
+
+            <div class="col-md-9">
+                <!-- <select class="form-control" ng-model="camera.CivilCode" ng-options="x for x in site3">
+                 </select>-->
+                <button class="btn btn-default" type="button"  ng-click="addVm.selectquanxian()">点我进行选择</button>
+                {{getzTree2.name}}
+            </div>
+        </div>
+        <div class="form-group" ng-show="hdy">
+            <div class="col-md-3">
+                <label>SIP服务器</label>
+            </div>
+
+            <div class="col-md-9">
+                <select ng-model="res.SipServiceID" class="form-control" ng-init="res.SipServiceID='5'">
+                    <option ng-repeat="x in sips" value="{{x.ServiceID}}">{{x.IPAddress}}</option>
+                </select>
+            </div>
+            <!--  <input type="text" class="form-control" ng-model="res.SipServiceID" >-->
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>IP地址</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.IPAddress" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>端口号</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Port" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>用户名</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.UsrName" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>密码</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Password" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>设备厂商</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Manufacturer" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>设备型号</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Model" >
+            </div>
+        </div>
+        <div class="form-group" >
+            <div class="col-md-3">
+                <label>最大通道数</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.channel" required>
+            </div>
+        </div>
+
+
+       <!-- <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>国标编码</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.codec16" >
+            </div>
+        </div>-->
+
+        <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>信令传输模式</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.SignalTransportType" ng-init="res.SignalTransportType='1'">
+                    <option value="1">1：UDP</option>
+                    <option value="2">2：TGP</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>码流传输模式</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.StreamTransportType" ng-init="res.StreamTransportType='1'">
+                    <option value="1">TGP-ACTIVE</option>
+                    <option value="2">TGP-PASSIVE</option>
+                    <option value="2">UDP</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button"  ng-click="addVm.submit()">提交
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">取消</button>
+        </div>
+
+</form>

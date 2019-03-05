@@ -1,0 +1,71 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">{{'fanyi468'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi472'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="user.realName" name="realName" required>
+
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi469'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="user.policeNum" placeholder="{{'fanyi470'|translate}}"/>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi471'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="user.identityCode" placeholder="{{'fanyi470'|translate}}"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi473'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="user.phone" placeholder="{{'fanyi470'|translate}}"/>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi474'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="email" class="form-control" ng-model="user.mail" placeholder="{{'fanyi470'|translate}}">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi475'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="user.station" placeholder="{{'fanyi470'|translate}}">
+            </div>
+        </div>
+
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="addVm.submit()">{{'fanyi421'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>

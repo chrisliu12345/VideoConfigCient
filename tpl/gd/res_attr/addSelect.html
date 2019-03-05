@@ -1,0 +1,43 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">选择准备新增的设备类型</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>设备类型</label>
+            </div>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="SelectType" value="111" checked="checked">DVR
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="SelectType" value="118">NVR
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="132">IPC摄像机
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="133">电视墙
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="134">解码器
+                </label>
+            </div>
+          <!-- <select class="form-control" ng-model="SelectType" ng-init="SelectType='111'">
+                 <option value="111">111：DVR</option>
+                 <option value="118">118：NVR</option>
+                 <option value="132">132：IPC摄像机</option>
+                 <option value="133">133：电视墙</option>
+                 <option value="134">134：解码器</option>
+             </select>-->
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="addVm.select_type()">提交
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">取消</button>
+        </div>
+
+</form>

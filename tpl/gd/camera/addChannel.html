@@ -1,0 +1,196 @@
+<form name="form1" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">添加通道</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+          <div class="col-md-3">
+              <!-- <label>摄像机ID</label>-->
+           </div>
+
+           <div class="col-md-9">
+               <input type="hidden" class="form-control" ng-model="channel_camid">
+                <!--<select class="form-control" ng-model="camera.ResID" ng-options="x for x in site1">
+                </select>-->
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>关联NVR ID</label>
+            </div>
+
+            <div class="col-md-9">
+             <input type="text" class="form-control" ng-model="channel_NvrID"  disabled>
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>通道号</label>
+            </div>
+
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="channel.NvrChannelID" ng-options="x for x in site1" ng-change="addChannelVm.select()" ></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>码流号</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="maliu"  ng-change="addChannelVm.select()">
+                    <option value="0">1：主码流</option>
+                    <option value="1">2：子码流</option>
+                </select>
+            </div>
+        </div>
+         <div class="form-group">
+            <div class="col-md-3">
+                <label>通道使用类型</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="channel.UseType" ng-init="channel.UseType='1'">
+                    <option value="1">1：实时视频</option>
+                    <option value="2">2：历史视频</option>
+                    <option value="3">3：解码器</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>播放地址</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.PlayUrl" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>帧率</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.FrameRate" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>码率类型</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--  <input type="text" class="form-control" ng-model="channel.BitRateType" >-->
+                <select class="form-control" ng-model="channel.BitRateType" ng-init="channel.BitRateType=''">
+                    <option value=""></option>
+                    <option value="CBR">“CBR”：固定码率</option>
+                    <option value="VBR">“VBR”：可变码率</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>码率大小</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.BitRate"  >
+            </div>
+        </div>
+
+
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>分辨率</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="channel.Resolution" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>音频标志</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioFlag" ng-init="channel.AudioFlag='0'">
+                    <option value=""></option>
+                    <option value="0">0：无音频</option>
+                    <option value="1">1：有音频</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>音频编码类型</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioEncoderType" ng-init="channel.AudioEncoderType=''">
+                    <option value=""></option>
+                    <option value="1">1: G.711</option>
+                    <option value="2">2: G.723.1</option>
+                    <option value="3">3: G.729</option>
+                    <option value="4">4: G.722.1</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>音频编码码率</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioBitRate" ng-init="channel.AudioBitRate=''">
+                    <option value=""></option>
+                    <option value="1">1: 5.3kbps</option>
+                    <option value="2">2: 6.3kbps</option>
+                    <option value="3">3: 8kbps</option>
+                    <option value="4">4: 16kbps</option>
+                    <option value="5">5: 24kbps</option>
+                    <option value="6">6: 32kbps</option>
+                    <option value="7">7: 48kbps</option>
+                    <option value="8">8: 64kbps</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="details">
+            <div class="col-md-3">
+                <label>音频采样率</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="channel.AudioSampleRate" ng-init="channel.AudioSampleRate=''">
+                    <option value=""></option>
+                    <option value="1">1: 8kHZ</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div align="left" >&nbsp;&nbsp;&nbsp;
+        <button class="btn  btn-sm btn-info" type="button"  ng-click="gaoji()" >高级</button>
+        <button class="btn  btn-sm btn-success" type="button"  ng-click="zhedie()">折叠</button>
+
+    </div>
+    <div class="modal-footer" >
+        <button class="btn btn-danger" type="button"  ng-click="addChannelVm.submit()">提交</button>
+        <button class="btn btn-sm  btn-primary" type="button" ng-click="addChannelVm.cancel()">关闭</button>
+
+    </div>
+
+</form>

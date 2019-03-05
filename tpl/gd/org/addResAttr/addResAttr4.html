@@ -1,0 +1,53 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'fanyi293'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+               <!-- <label>设备类型</label>-->
+            </div>
+
+            <div class="col-md-9">
+
+                <input type="hidden" class="form-control" ng-model="deviceType" name="deviceType" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi294'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.ResID" name="ResID"
+                       required>
+                <div class="error" ng-show="myForm.ResID.$dirty && myForm.ResID.$invalid" style="color:#F00">
+                    <small class="error" ng-show="myForm.ResID.$error.required">{{'fanyi131'|translate}}</small>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi295'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.ResID" name="ResID"
+                      required>
+                <div class="error" ng-show="myForm.ResID.$dirty && myForm.ResID.$invalid" style="color:#F00">
+                    <small class="error" ng-show="myForm.ResID.$error.required">{{'fanyi131'|translate}}</small>
+                </div>
+            </div>
+        </div>
+
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="addVm.submit()">{{'fanyi45'|translate}}
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+        </div>
+
+</form>

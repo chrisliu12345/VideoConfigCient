@@ -1,0 +1,193 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'fanyi296'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <!--<label>设备类型</label>-->
+            </div>
+            <div class="col-md-9">
+                <input type="hidden" class="form-control" ng-model="deviceType" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi273'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Name" >
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>设备SIPID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.DeviceID" ng-maxlength="20"
+                       ng-minlength="20" name="DeviceID"  placeholder="不能为空！只能为20位数字" required>
+                <div class="error" ng-show="myForm.DeviceID.$dirty && myForm.DeviceID.$invalid"
+                     style="color:#F00">
+                    <small class="error" ng-show="myForm.DeviceID.$error.minlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.maxlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="myForm.DeviceID.$error.required">不能为空</small>
+                </div>
+
+            </div>
+        </div>-->
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi294'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.config" ng-init="res.config='0'"  ng-change="addVm.select_config()">
+                    <option value="0"></option>
+                    <option value="HIK">1：{{'fanyi276'|translate}}</option>
+                    <option value="DH">2：{{'fanyi277'|translate}}</option>
+                    <option value="UNIVIEW">3：{{'fanyi278'|translate}}</option>
+                    <option value="ONVIF">4: ONVIF</option>
+                    <option value="SIP">5: GB/T-28181</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi279'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <select ng-model="res.PlatformID" class="form-control" ng-init="res.PlatformID='1'">
+                    <option ng-repeat="x in items" value="{{x.PlatformId}}">{{x.PlatformName}}</option>
+                </select>
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>行政区划</label>
+            </div>
+
+            <div class="col-md-9">
+                &lt;!&ndash; <select class="form-control" ng-model="camera.CivilCode" ng-options="x for x in site3">
+                 </select>&ndash;&gt;
+                <button class="btn btn-default" type="button"  ng-click="addVm.selectquanxian()">点我进行选择</button>
+                {{getzTree2.name}}
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi282'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.IPAddress" ng-pattern="/^\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}$/">
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi283'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Port" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi82'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.UsrName" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi83'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Password" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi284'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Manufacturer" >
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi285'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.Model" >
+            </div>
+        </div>
+        <div class="form-group" >
+            <div class="col-md-3">
+                <label>{{'fanyi286'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.channel" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="hdy">
+            <div class="col-md-3">
+                <label>{{'fanyi281'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select ng-model="res.SipServiceID" class="form-control">
+                    <option ng-repeat="x in sips" value="{{x.ServiceID}}">{{x.IPAddress}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>{{'fanyi287'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="res.codec16" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>{{'fanyi289'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.SignalTransportType" ng-init="res.SignalTransportType='1'">
+                    <option value="1">1：UDP</option>
+                    <option value="2">2：TCP</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="gb2016">
+            <div class="col-md-3">
+                <label>{{'fanyi288'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="res.StreamTransportType" ng-init="res.StreamTransportType='1'">
+                    <option value="1">TCP-ACTIVE</option>
+                    <option value="2">TCP-PASSIVE</option>
+                    <option value="2">UDP</option>
+                </select>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button"  ng-click="addVm.submit()">{{'fanyi45'|translate}}
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+        </div>
+
+</form>

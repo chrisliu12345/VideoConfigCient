@@ -1,0 +1,41 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'fanyi335'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi315'|translate}}</label>
+            </div>
+            <div>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="SelectType" value="111" checked="checked">DVR
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" ng-model="SelectType" value="118">NVR
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="132">{{'fanyi299'|translate}}
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="134">{{'fanyi70'|translate}}
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="133">{{'fanyi300'|translate}}
+                </label>
+                <label class="radio-inline">
+                    <input  type="radio" ng-model="SelectType" value="138">{{'fanyi301'|translate}}
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="addVm.select_type()">{{'fanyi302'|translate}}
+            </button>
+            <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+        </div>
+
+</form>

@@ -1,0 +1,99 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">{{'fanyi461'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi462'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="account.username"
+                       required>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi83'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <input type="password" class="form-control" ng-model="account.password" required/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi463'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <input type="password" placeholder="{{'fanyi464'|translate}}" class="form-control" ng-model="repassword" required/>
+            </div>
+                <span style="color: red" ng-show="repassword != account.password">{{'fanyi465'|translate}}</span>
+
+        </div>
+
+       <!-- <div class="form-group">
+            <label class="col-sm-3 control-label text-left">所属App</label>
+            <div class="col-sm-9">
+                <ui-select ng-model="AppIds.selected" theme="bootstrap">
+                    <ui-select-match placeholder="请选择APP……">
+                        <span ng-bind="$select.selected.name"></span>
+                        &lt;!&ndash;这种写法不会默认不会显示出placeholder&ndash;&gt;
+                        &lt;!&ndash;{{$select.selected.name}}&ndash;&gt;
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in AppIds | filter: $select.search">
+                        <div ng-bind-html="item.name | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>-->
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label text-left">{{'role'|translate}}</label>
+            <div class="col-sm-9">
+                <ui-select ng-model="Roles.selected" theme="bootstrap">
+                    <ui-select-match placeholder="{{'selectRole'|translate}}……">
+                        <span ng-bind="$select.selected.roleName"></span>
+                        <!--这种写法不会默认不会显示出placeholder-->
+                        <!--{{$select.selected.name}}-->
+                    </ui-select-match>
+                    <ui-select-choices repeat="item in Roles | filter: $select.search">
+                        <div ng-bind-html="item.roleName | highlight: $select.search"></div>
+                    </ui-select-choices>
+                </ui-select>
+            </div>
+        </div>
+
+       <!--<div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi466'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+               &lt;!&ndash;<input type="button" class="form-control" ng-model="updown.UsrID" ng-click="addVm.selectquanxian()"/>&ndash;&gt;
+                <button class="btn btn-default" type="button"  ng-click="accountVm.selectquanxian()">{{'fanyi15'|translate}}</button>
+                <span class="glyphicon glyphicon-ok" ng-show="allotPlace"></span>
+            </div>
+       </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi467'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="button" class="form-control" ng-model="updown.UsrID" ng-click="addVm.selectquanxian()"/>-->
+                <button class="btn btn-default" type="button"  ng-click="accountVm.selectquanxian1()">{{'fanyi15'|translate}}</button>
+                <span class="glyphicon glyphicon-ok"ng-show="selectGroupOrCamera"></span>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="accountVm.submit()">{{'fanyi45'|translate}}
+        </button>
+        <button class="btn btn-warning" type="button" ng-click="accountVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>

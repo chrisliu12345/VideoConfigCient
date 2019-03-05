@@ -1,0 +1,104 @@
+<form name="form1" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">{{'fanyi92'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+       <!-- <div class="form-group" ng-show="parentadd">
+            <div class="col-md-3">
+                <label>组ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.GroupID" name="GroupID"
+                       placeholder="不能为空！请输入10位数以内数字，例如：1111111111"
+                       required>
+                <div class="error" ng-show="form1.GroupID.$dirty && form1.GroupID.$invalid" style="color:#F00">
+                    <small class="error" ng-show="form1.GroupID.$error.required">不能为空</small>
+                </div>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'groupType'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select ng-model="gro.Type" class="form-control" ng-init="gro.Type='1'" name="Type1"
+                        ng-change="addVm.changeCS()" required>
+                   <!-- <option ng-repeat="x in sites" value="{{x.value}}">{{x.name}}</option>-->
+                    <option  value="1">1：{{'fanyi280'|translate}}</option>
+                    <option  value="2">2：{{'yewugroup'|translate}}</option>
+                    <option  value="3">3：{{'xunigoup'|translate}}</option>
+                </select>
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>虚拟组织ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.VirtualOrgID" name="VirtualOrgID"
+                       placeholder="不能为空" required/>
+                <div class="error" ng-show="form1.VirtualOrgID.$dirty && form1.VirtualOrgID.$invalid"
+                     style="color:#F00">
+                    <small class="error" ng-show="form1.VirtualOrgID.$error.required">不能为空</small>
+                </div>
+            </div>
+        </div>-->
+
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi242'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.name" name="Name" placeholder="{{'fanyi131'|translate}}"
+                       required>
+                <div class="error" ng-show="form1.Name.$dirty && form1.Name.$invalid" style="color:#F00">
+                    <small class="error" ng-show="form1.Name.$error.required">{{'fanyi131'|translate}}</small>
+                </div>
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>父组ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <button class="btn btn-default" type="button" ng-click="addVm.selectquanxian()">点我进行选择</button>
+                {{getzTreeNode.id}}
+            </div>
+        </div>-->
+
+
+        <div class="form-group" ng-show="bus">
+            <div class="col-md-3">
+                <label>{{'fanyi224'|translate}}</label>
+            </div>
+
+            <div class="col-md-8">
+                <input type="text" class="form-control" ng-model="gro.BusinessGroupID" placeholder="{{'fanyi131'|translate}}" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="bus">
+            <div class="col-md-3">
+                <label>{{'fanyi244'|translate}}</label>
+            </div>
+
+            <div class="col-md-8">
+                 <input type="text" class="form-control" ng-model="getzTreeNode.ParentOrgID">
+               <!-- <select class="form-control" ng-model="gro.ParentOrgID" ng-options="x for x in site1">
+                </select>-->
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="addVm.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>
