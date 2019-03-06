@@ -146,14 +146,33 @@
                                 </div>
 
                                 <div class="col-sm-9">
-                                    {{'fanyi63'|translate}}：<input type="checkbox" ng-model="work1" ng-checked="false"
-                                               ng-click="showCase.updateSelectionAllA($event,'A1')">&nbsp;&nbsp;
-                                    {{'fanyi64'|translate}}：<input type="checkbox" ng-model="work2" ng-checked="false"
-                                               ng-click="showCase.updateSelectionAllA($event,'A2')">&nbsp;&nbsp;
-                                    {{'fanyi091'|translate}}：<input type="checkbox" ng-model="work3" ng-checked="false"
-                                               ng-click="showCase.updateSelectionAllA($event,'A3')">&nbsp;&nbsp;
-                                    {{'fanyi65'|translate}} ：<input type="checkbox" ng-model="work4" ng-checked="false"
-                                               ng-click="showCase.updateSelectionAllA($event,'A4')">&nbsp;&nbsp;
+                                    <ul>
+                                        <li style="display: inline;">
+                                            <input type="checkbox" ng-model="work1" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A1')">{{'fanyi63'|translate}}
+                                        </li>
+                                        <li style="display: inline; margin-left: 20px">
+                                            <input type="checkbox" ng-model="work2" ng-checked="selectTypeShow"
+                                                                           ng-click="showCase.updateSelectionAllA($event,'A2')">{{'fanyi64'|translate}}
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work3" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A3')">{{'fanyi091'|translate}}
+                                        </li>
+                                        <br>
+                                        <li style="display: inline;">
+                                            <input type="checkbox" ng-model="work4" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A4')">{{'fanyi65'|translate}}
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work5" ng-checked="selectTypeShow"
+                                                          ng-click="showCase.updateSelectionAllA($event,'A5')">预置位报警
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work6" ng-checked="selectTypeShow"
+                                                         ng-click="showCase.updateSelectionAllA($event,'A6')">报警录像
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
 
@@ -172,12 +191,29 @@
                             </div>
                             <div class="form-group">
                                 <div class="col-md-3">
-                                    <label>{{'fanyi68'|translate}}</label>
+                                    <label>报警录像时间</label>
                                 </div>
 
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" ng-model="alarm.Linkage_Info"
-                                          >
+                                <div class="col-md-3">
+                                    <select class="form-control" ng-model="alarm.Linkage_Info" ng-init="alarm.Linkage_Info='-1'"
+                                            required>
+                                        <option value="-1">不存储</option>
+                                        <option value="30">30秒</option>
+                                        <option value="60">1分钟</option>
+                                        <option value="120">2分钟</option>
+                                        <option value="300">5分钟</option>
+                                        <option value="600">10分钟</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>预置位号</label>
+                                </div>
+                                <div class="col-md-3">
+                                   <input type="text" class="form-control" ng-model="alarm.Prest"
+                                                          placeholder="枪机不填写">
                                 </div>
                             </div>
                         </div>
@@ -190,7 +226,6 @@
                                 </button>
                                 <button class="btn btn-warning" type="button" ng-click="showCase.cancel()">{{'quxiao'|translate}}</button>
                             </div>
-                        </div>
                     </form>
                 </div>
                     </form>

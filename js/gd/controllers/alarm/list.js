@@ -31,6 +31,7 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
     $scope.my_tree = $scope.tree = {};*/
     $scope.select_plan = false;
     $scope.showSelect=false;
+    $scope.selectTypeShow=false;
     $scope.TimeDay = false;
     $scope.addSave_Plan = false;
     $scope.query_plan = true;
@@ -39,16 +40,22 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
     //datatable当前页数据（用户）的数组
     var currentPageUser = [];
     $scope.selectedPlan = [];
-
+    $scope.selectNodeAlarm={};
     var selectAndContinue = vm.selectAndContinue = function () {
-        if ($scope.selectNodeAlarm.icon === '/img/alarm.jpg'||$scope.selectNodeAlarm.icon===undefined) {
-            $scope.select_plan = true;
-            $scope.TimeDay = true;
-        } else{
-            alert("请选择报警设备");
-            $scope.select_plan = false;
-            $scope.TimeDay = false;
+        console.log($scope.selectNodeAlarm[0]);
+        if($scope.selectNodeAlarm===null){
+            alert("请选择摄像机！");
+            return;
         }
+        if ($scope.selectNodeAlarm[0].cameraNodes !== 'C'&&$scope.selectNodeAlarm[0].ResType!=='132') {
+                $scope.select_plan = false;
+                $scope.TimeDay = false;
+                $scope.ThingDay = false;
+                alert("此节点["+$scope.selectNodeAlarm[0].name+"]不是摄像机!,请重新选择！");
+                return;
+        }
+        $scope.select_plan = true;
+        $scope.TimeDay = true;
     }
 
     //获取人员列表
@@ -86,7 +93,7 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
 
     //对数据进行提交处理
     vm.submit = function () {
-        $scope.alarm.DeviceID=$scope.selectNodeAlarm.id;
+        $scope.alarm.ResId=$scope.selectNodeAlarm[0].id;
         $scope.alarm.Linkage_Camera=$rootScope.selectLinkCamera;//获取联动摄像机
         $scope.alarm.Linkage_Method=result;//获取联动方式
         var userlist=new Array();
@@ -106,14 +113,27 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
                     userlist.push($scope.mutinput.users[i].realName);
         }
         $scope.alarm.Notified_person=userlist;
-
+        if($scope.alarm.Prest===null||$scope.alarm.Prest===''||$scope.alarm.Prest===undefined){
+            $scope.alarm.Prest2="-1";
+        }else{
+            $scope.alarm.Prest2=$scope.alarm.Prest;
+        }
             $http({
                 method: 'POST',
                 url: '/ma/alarm/add',
                 data: $scope.alarm
             }).then(function successCallback(response) {
                 alert("添加成功！");
+                $scope.selectTypeShow=null;
                 $scope.select_plan=false;
+                $rootScope.selectLinkCamera=null;
+                $scope.alarm.Alarm_event_name="";
+                $scope.alarm.Input_channel="";
+                $scope.alarm.AlarmMethod="1";
+                $scope.mutinput.users=[];
+                $scope.alarm.Linkage_Info="-1";
+                $scope.alarm.Prest=null;
+
             }, function errorCallback(response) {
                 alert("报警设置保存失败！");
             });
@@ -190,10 +210,8 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
         }),
         DTColumnBuilder.newColumn('Alarm_event_name')
             .withTitle("{{'alarmename'|translate}}"),
-        DTColumnBuilder.newColumn('DeviceName')
-            .withTitle("{{'devicname'|translate}}"),
-        DTColumnBuilder.newColumn('Input_channel')
-            .withTitle("{{'alarmnum'|translate}}"),
+       /* DTColumnBuilder.newColumn('Input_channel')
+            .withTitle("{{'alarmnum'|translate}}"),*/
         DTColumnBuilder.newColumn('AlarmMethodName')
             .withTitle("{{'alarmmode'|translate}}"),
         DTColumnBuilder.newColumn('AlarmTypeName')
@@ -452,7 +470,7 @@ app.directive('myDirAlarm', function ($http,$rootScope) {
                             $scope.$apply(function () {
                                 var treeObj = $.fn.zTree.getZTreeObj("treeAlarm"),
                                     nodes = treeObj.getCheckedNodes(true);
-                                    ngModel.$setViewValue(nodes[0]);
+                                    ngModel.$setViewValue(nodes);
 
                             });
                         },

@@ -66,7 +66,7 @@ app.directive('myDirL', function ($http,$rootScope) {
                                 var t=[];
                                 var cc={};
                                 for (var i = 0; i < nodes.length; i++) {
-                                    if(nodes[i].icon==='/img/camera.jpg'){
+                                    if(nodes[i].icon==='/img/camera.jpg'||nodes[i].ResType==='132'){
                                         cc=nodes[i].id;
                                         t.push(cc);
                                     }else{
