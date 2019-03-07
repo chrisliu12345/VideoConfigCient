@@ -47,7 +47,9 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
             alert("请选择摄像机！");
             return;
         }
-        if ($scope.selectNodeAlarm[0].cameraNodes !== 'C'&&$scope.selectNodeAlarm[0].ResType!=='132') {
+        if ($scope.selectNodeAlarm[0].cameraNodes !== 'C'
+            &&$scope.selectNodeAlarm[0].ResType!=='132'
+            &&$scope.selectNodeAlarm[0].ResType!=='134') {
                 $scope.select_plan = false;
                 $scope.TimeDay = false;
                 $scope.ThingDay = false;

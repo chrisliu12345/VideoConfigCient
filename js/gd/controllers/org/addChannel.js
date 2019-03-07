@@ -35,6 +35,7 @@ app.controller('addChannelRightCtrl', function ($rootScope,$scope, $modal,$resou
                 modalInstance.result.then(function (rr) {
                 });
             }else {
+                alert("添加成功！");
                 $modalInstance.close(response.data.data);
             }
         },function error(){

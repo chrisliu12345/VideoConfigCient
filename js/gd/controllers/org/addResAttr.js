@@ -45,60 +45,60 @@ app.controller('addResAttrRightCtrl', function ($rootScope, $scope, $http, $reso
             return;
         }
         else {
-            //获取当前res表中最后的一条数据的deviceID
-            $http({
-                url:"/ma/res/selectLastData",
-                method:"GET",
-            }).then(function success(response){
-                var lastData=response.data.data;
-                temp=lastData.slice(13);
-                var i;
-                i=parseInt(temp);
-                if(temp.substr(0,1)==='0'){
-                    temp=pad(i,7);
-                    i=parseInt(temp);
-                    console.log("这是补全后的temp:"+temp);
-                }
-                temp=i+1;
-                var civil=OrgService.get();
-                var virtual=OrgTempService.get();
-                $scope.res.accountName=$rootScope.currentAccountUserinfo.accountName;
-                $scope.res.accountId= $rootScope.currentAccountUserinfo.accountId;
-                $scope.res.CivilCode = virtual.VirtualOrgID;
-                //如果行政区划类型不是1，则parentid不能与deviceID相同，应该为组的VirtualOrgID。
-                if(virtual.Type!==1){
-                    $scope.res.ParentID=virtual.VirtualOrgID;
-                }
-                $scope.res.ResType = $scope.deviceType;
-                var pp = pad(virtual.VirtualOrgID,10);//前10位
-                var kk=pp+$scope.deviceType+temp;//前13位
-                //查询最后一条数据的deviceid
-                $scope.res.DeviceID=kk;
+                //获取当前res表中最后的一条数据的deviceID
                 $http({
-                    url:"/ma/res",
-                    method:"POST",
-                    data:$scope.res
-                }).then(function success(response){
-                    var NewNode=response.data.data;
-                    alert("设备添加成功");
-                    var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
-                    if(civil.children !==undefined){
-                        treeObj.addNodes(civil, NewNode, true);
-                        treeObj.expandNode(civil, true);
-                    }else{
-                        $scope.expandNodes1();
-                        /*treeObj.addNodes(civil, NewNode, true);
-                         treeObj.expandNode(civil, true);*/
+                    url: "/ma/res/selectLastData",
+                    method: "GET",
+                }).then(function success(response) {
+                    var lastData = response.data.data;
+                    temp = lastData.slice(13);
+                    var i;
+                    i = parseInt(temp);
+                    if (temp.substr(0, 1) === '0') {
+                        temp = pad(i, 7);
+                        i = parseInt(temp);
+                        console.log("这是补全后的temp:" + temp);
                     }
-                    $modalInstance.close();
+                    temp = i + 1;
+                    var civil = OrgService.get();
+                    var virtual = OrgTempService.get();
+                    $scope.res.accountName = $rootScope.currentAccountUserinfo.accountName;
+                    $scope.res.accountId = $rootScope.currentAccountUserinfo.accountId;
+                    $scope.res.CivilCode = virtual.VirtualOrgID;
+                    //如果行政区划类型不是1，则parentid不能与deviceID相同，应该为组的VirtualOrgID。
+                    if (virtual.Type !== 1) {
+                        $scope.res.ParentID = virtual.VirtualOrgID;
+                    }
+                    $scope.res.ResType = $scope.deviceType;
+                    var pp = pad(virtual.VirtualOrgID, 10);//前10位
+                    var kk = pp + $scope.deviceType + temp;//前13位
+                    //查询最后一条数据的deviceid
+                     $scope.res.DeviceID = kk;
+                    $http({
+                        url:"/ma/res",
+                        method:"POST",
+                        data:$scope.res
+                    }).then(function success(response){
+                        var NewNode=response.data.data;
+                        alert("设备添加成功");
+                        var treeObj = $.fn.zTree.getZTreeObj("treeDemo");
+                        if(civil.children !==undefined){
+                            treeObj.addNodes(civil, NewNode, true);
+                            treeObj.expandNode(civil, true);
+                        }else{
+                            $scope.expandNodes1();
+                            /*treeObj.addNodes(civil, NewNode, true);
+                             treeObj.expandNode(civil, true);*/
+                        }
+                        $modalInstance.close();
 
-                },function error(){
-                console.log("error");
-            });
+                    },function error(){
+                        console.log("error");
+                    });
+                }, function error() {
+                    alert("错误！");
+                });
 
-            },function error(){
-                alert("错误！");
-            })
         };
     };
     //展开所选的节点
