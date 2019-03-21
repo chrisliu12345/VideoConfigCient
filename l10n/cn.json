@@ -123,7 +123,7 @@
     "mediaid":"流媒体ID",
     "workday":"工作日",
     "savetime":"保存时间",
-    "videoloss":"视频丢失停止录像",
+    "videoloss":"视频丢失停止",
     "starttime":"开始时间",
     "endtime":"结束时间",
     "layname":"名称",
@@ -695,7 +695,8 @@
     "quantian":"设置存储计划",
     "skin": "更换皮肤",
     "quantian":"全   天",
-    "dingshilu":"定时录像"
+    "dingshilu":"定时录像",
+    "yuluxiang":"预录像时间"
   }
 
 ]

@@ -171,13 +171,25 @@
                                     {{'fanyi512'|translate}}:
                                         </div>
                                         <div class="col-md-9">
-                                    {{'fanyi513'|translate}} <input type="radio" ng-model="IslostStop" value="1" ng-checked=true>&nbsp;&nbsp;
+                                    {{'fanyi513'|translate}} <input type="radio" ng-model="IslostStop" value="1">&nbsp;&nbsp;
                                     {{'fanyi514'|translate}} <input type="radio" ng-model="IslostStop" value="0">
                                         </div>
                                     </div>
                                 </td>
                             </tr>
-
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-md-3">
+                                            是否设置报警预录像:
+                                        </div>
+                                        <div class="col-md-9">
+                                            {{'fanyi513'|translate}} <input type="radio" ng-model="alarmTime" value="30">&nbsp;&nbsp;
+                                            {{'fanyi514'|translate}} <input type="radio" ng-model="alarmTime" value="0">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
                         </table>
                     </div>
                     <div class="modal-footer" ng-show="TimeDay">

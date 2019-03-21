@@ -232,7 +232,14 @@ function ssCtrl($scope, $resource, $rootScope, $modal, Save, SaveService, $compi
         } else if ($scope.StopTime <= $scope.StartTime) {
             alert("结束时间不能小于开始时间");
             return;
-        } else {
+        } else if ($scope.IslostStop === null || $scope.IslostStop === undefined) {
+            alert("请确定视频丢失是否停止录像");
+            return;
+        }
+        else if ($scope.alarmTime === null || $scope.alarmTime === undefined) {
+            alert("请确定是否设置报警预录像");
+            return;
+        }else {
             if ($scope.StreamID === 0 && $scope.service01 !== undefined) {
                 $scope.savesconfig.StreamingID = $scope.service01.ServiceID;
             } else {
@@ -240,6 +247,7 @@ function ssCtrl($scope, $resource, $rootScope, $modal, Save, SaveService, $compi
             }
             $scope.savesconfig.KeepTime = 1;
             $scope.savesconfig.IslostStop = $scope.IslostStop;
+            $scope.savesconfig.alarmTime = $scope.alarmTime;
             $scope.savesconfig.WorkDay = result;
            /* $scope.savesconfig.StopTime = $scope.StopTime;
             $scope.savesconfig.StartTime = $scope.BeginTime;*/
@@ -341,29 +349,23 @@ function ssCtrl($scope, $resource, $rootScope, $modal, Save, SaveService, $compi
             var index = $scope.dtDataset.indexOf(data);
             $scope.numb = index;
             var ss = data.PlanID;
-
             //  return '<input type="checkbox"  ng-model="a[' + ss + ']" ng-checked="false"   ng-click="all(' + data.id + ',a[' + ss + '])" id="' + data.id + '" name="change_one" >';
             return '<input type="checkbox"   ng-model="a[' + ss + ']" ng-checked="false"    ng-click="all(' + data.PlanID + ',a[' + ss + '])" id="' + data.PlanID + '" name="change_one" >';
             //return '<input type="checkbox" ng-checked="isSelectedByIndex(' + index + ')" ng-click="showCase.updateSelectionOne($event,' + index + ')">';
         }),
-        DTColumnBuilder.newColumn('PlanID')
-            .withTitle("{{'videoplan'|translate}}"),
-        DTColumnBuilder.newColumn('CamID')
-            .withTitle("{{'camid'|translate}}"),
         DTColumnBuilder.newColumn('CameraName')
             .withTitle("{{'camName'|translate}}"),
-        DTColumnBuilder.newColumn('StreamingID')
-            .withTitle("{{'mediaid'|translate}}"),
         DTColumnBuilder.newColumn('dayTemp')
             .withTitle("{{'workday'|translate}}"),
-        DTColumnBuilder.newColumn('KeepTime')
-            .withTitle("{{'savetime'|translate}}"),
         DTColumnBuilder.newColumn('IslostStop')
             .withTitle("{{'videoloss'|translate}}"),
+        DTColumnBuilder.newColumn('AlarmTime')
+            .withTitle("{{'yuluxiang'|translate}}"),
         DTColumnBuilder.newColumn('start')
             .withTitle("{{'starttime'|translate}}"),
         DTColumnBuilder.newColumn('stop')
             .withTitle("{{'endtime'|translate}}"),
+
         DTColumnBuilder.newColumn(null)
             .withTitle("{{'operate'|translate}}")
             .notSortable()

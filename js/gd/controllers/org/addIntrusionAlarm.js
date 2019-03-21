@@ -136,6 +136,7 @@ app.controller('addIntrusionAlarmCtrl', function ($scope, $rootScope, $resource,
     this.submit = function () {
         $scope.AlarmData.ResId = $rootScope.channel_camid;
         $scope.AlarmData.data = myList;
+        console.log()
         $http({
             url: "/ma/res/saveAlarm",
             method: "POST",

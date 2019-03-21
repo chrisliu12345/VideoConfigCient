@@ -41,27 +41,14 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
     var currentPageUser = [];
     $scope.selectedPlan = [];
     $scope.selectNodeAlarm={};
+    $rootScope.alarmNode={};
+    //跳转到新增页面
     var selectAndContinue = vm.selectAndContinue = function () {
-        console.log($scope.selectNodeAlarm[0]);
-        if($scope.selectNodeAlarm===null){
-            alert("请选择摄像机！");
-            return;
-        }
-        if ($scope.selectNodeAlarm[0].cameraNodes !== 'C'
-            &&$scope.selectNodeAlarm[0].ResType!=='132'
-            &&$scope.selectNodeAlarm[0].ResType!=='134') {
-                $scope.select_plan = false;
-                $scope.TimeDay = false;
-                $scope.ThingDay = false;
-                alert("此节点["+$scope.selectNodeAlarm[0].name+"]不是摄像机!,请重新选择！");
-                return;
-        }
         $scope.select_plan = true;
-        $scope.TimeDay = true;
+        $scope.query_plan = false;
     }
 
     //获取人员列表
-
     $http({
         method: 'GET',
         url: '/ma/user'
@@ -70,32 +57,21 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
     }, function errorCallback(response) {
         alert("人员信息获取失败！");
     });
-    $scope.ztreeOnAsyncSuccess1 = function (event, treeId, treeNode) {
-        var zTreeObj = $.fn.zTree.getZTreeObj("treeAlarm");
-        var checkNodes = zTreeObj.getNodesByParam('pId', treeNode.id, null);
-        console.log(checkNodes);
-        if (checkNodes === null || checkNodes.length <= 0) {
-            $http({
-                url: "/ma/orgtree/getCtree/" + treeNode.id,
-                method: 'POST',
-                data:$rootScope.currentAccountUserinfo.accountName
-            }).success(function (response) {
-                zTreeObj.addNodes(treeNode, response, true);
-
-                zTreeObj.expandNode(treeNode, true);// 将新获取的子节点展开
-
-            }).error(function () {
-                alert("请求错误！");
-            });
-        } else {
-            return;
-        }
-
-    };
-
+    //获取报警设备列表
+    $http({
+        method: 'GET',
+        url: '/ma/alarm/alarmList'
+    }).then(function successCallback(response) {
+        console.log(response);
+        $scope.alarmItems=response.data.data;
+    }, function errorCallback(response) {
+        alert("报警信息获取失败！");
+    });
     //对数据进行提交处理
     vm.submit = function () {
-        $scope.alarm.ResId=$scope.selectNodeAlarm[0].id;
+        console.log($scope.alarmIdAndName);
+        $scope.alarm.ResId=$scope.alarmIdAndName.ResID;
+        $scope.alarm.Alarm_event_name=$scope.alarmIdAndName.name;
         $scope.alarm.Linkage_Camera=$rootScope.selectLinkCamera;//获取联动摄像机
         $scope.alarm.Linkage_Method=result;//获取联动方式
         var userlist=new Array();
@@ -127,7 +103,6 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
             }).then(function successCallback(response) {
                 alert("添加成功！");
                 $scope.selectTypeShow=null;
-                $scope.select_plan=false;
                 $rootScope.selectLinkCamera=null;
                 $scope.alarm.Alarm_event_name="";
                 $scope.alarm.Input_channel="";
@@ -135,11 +110,11 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
                 $scope.mutinput.users=[];
                 $scope.alarm.Linkage_Info="-1";
                 $scope.alarm.Prest=null;
-
+                $state.go('app.alarm', {}, {reload: true});
             }, function errorCallback(response) {
                 alert("报警设置保存失败！");
             });
-        }
+        };
 
 
     //查看录像计划
@@ -150,6 +125,7 @@ function alCtrl($scope, $resource, $rootScope, $modal, Alarm, AlarmService, $com
         $scope.TimeDay = false;
         $scope.select_plan = false;
         $rootScope.selectLinkCamera=null;
+        $scope.query_plan = true;
     }
     //新增
     vm.add = function () {
@@ -471,8 +447,8 @@ app.directive('myDirAlarm', function ($http,$rootScope) {
                         onCheck: function (event, treeId, treeNode, clickFlag) {
                             $scope.$apply(function () {
                                 var treeObj = $.fn.zTree.getZTreeObj("treeAlarm"),
-                                    nodes = treeObj.getCheckedNodes(true);
-                                    ngModel.$setViewValue(nodes);
+                                    nodes1 = treeObj.getCheckedNodes(true);
+                                    ngModel.$setViewValue(nodes1);
 
                             });
                         },
