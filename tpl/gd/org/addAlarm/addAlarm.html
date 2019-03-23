@@ -72,25 +72,33 @@
             </div>
         </div>
         <div class="form-group">
-            <div class="col-md-2" ng-show="alarmLine">
+            <div class="col-md-4" ng-show="alarmLine">
                 <button id="drow1" type="button" class="btn btn-primary">{{'simpleLine'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm1">设置</button>
 
             </div>
-            <div class="col-md-2" ng-show="alarmArrow">
+            <div class="col-md-4" ng-show="alarmArrow">
                 <button id="drow2" type="button" class="btn btn-primary">{{'arrow'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm2">设置</button>
 
             </div>
-            <div class="col-md-2" ng-show="alarmDoubleLine">
+            <div class="col-md-4" ng-show="alarmDoubleLine">
                 <button id="drow3" type="button" class="btn btn-primary">{{'doubleLine'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm3">设置</button>
 
             </div>
-            <div class="col-md-2" ng-show="alarmMulLine">
+            <div class="col-md-4" ng-show="alarmMulLine">
                 <button id="drow4" type="button" class="btn btn-primary">{{'pArea'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm4">设置</button>
+
             </div>
-            <div class="col-md-10" ng-show="cleanDraw">
-                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm">{{'confirm'|translate}}</button>
-                <button id="clean1data" type="button" class="btn btn-danger" ng-click="addVm.deleteThis()" >{{'cancelThisData'|translate}}</button>
-                <button id="cleandata" type="button" class="btn btn-danger" ng-click="addVm.deleteAll()">{{'deleteAll'|translate}}</button>
+            <div class="col-md-2" >
+            </div>
+            <div class="col-md-16" ng-show="cleanDraw">
+               <!-- <button class="btn btn-lg btn-success" type="button" ng-click="addVm.ok()" id="confirm">设置</button>-->
+
+                <button id="clean1data" type="button" class="btn btn-danger" ng-click="addVm.deleteThis()" style="margin-left: 10%">{{'cancelThisData'|translate}}</button>
+               <!-- <button id="cleandata" type="button" class="btn btn-danger" ng-click="addVm.deleteAll()">{{'deleteAll'|translate}}</button>-->
                 <button id="clean" type="button" class="btn btn-danger">{{'cleanCan'|translate}}</button>
             </div>
         </div>
@@ -120,7 +128,7 @@
     });
     //画单线
     $('#drow1').click(function () {
-        $("#confirm").attr('disabled',false);
+        $("#confirm1").attr('disabled',false);
         $('#test1').show();
         $('#test2').hide();
         $('#test3').hide();
@@ -132,7 +140,7 @@
     });
     //画箭头
     $('#drow2').click(function () {
-        $("#confirm").attr('disabled',false);
+        $("#confirm3").attr('disabled',false);
         $('#test2').show();
         $('#test1').hide();
         $('#test3').hide();
@@ -141,7 +149,7 @@
     });
     //画双线
     $('#drow3').click(function () {
-        $("#confirm").attr('disabled',false);
+        $("#confirm2").attr('disabled',false);
         $('#test3').show();
         $('#test2').hide();
         $('#test1').hide();
@@ -154,7 +162,7 @@
     });
     //画折线
     $('#drow4').click(function () {
-        $("#confirm").attr('disabled',false);
+        $("#confirm4").attr('disabled',false);
         $('#test3').hide();
         $('#test2').hide();
         $('#test1').hide();

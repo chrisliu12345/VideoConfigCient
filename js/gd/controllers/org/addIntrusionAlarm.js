@@ -76,7 +76,7 @@ app.controller('addIntrusionAlarmCtrl', function ($scope, $rootScope, $resource,
             var myItems = {
                 id: $scope.AlarmData.type.id,
                 name: $scope.AlarmData.type.name,
-                path: $('#simpline0').val() + ":" + $('#simpline1').val()
+                path: $('#simpline0').val() + ";" + $('#simpline1').val()
             };
             myList.push(myItems);
         } else if ($scope.AlarmData.type.id === 6) {
@@ -126,15 +126,19 @@ app.controller('addIntrusionAlarmCtrl', function ($scope, $rootScope, $resource,
         $("#" + flag.id).remove();
 
     };
-    this.deleteAll = function () {
+    /*this.deleteAll = function () {
         myList = [];
         d3.select("#finishData").remove();
-    }
+    }*/
     this.cancel = function () {
         $modalInstance.dismiss('cancel');
     };
     this.submit = function () {
         $scope.AlarmData.ResId = $rootScope.channel_camid;
+        if(myList.length<1){
+            alert("设置内容后，请点击[设置]按钮！");
+            return;
+        }
         $scope.AlarmData.data = myList;
         console.log()
         $http({
