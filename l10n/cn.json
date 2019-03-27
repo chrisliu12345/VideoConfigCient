@@ -50,6 +50,7 @@
     "editgroup":"编辑组信息",
     "delgroup":"删除该组",
     "addres":"添加设备",
+    "saveConfig":"录像设置",
     "exportgroup":"导出组结构",
     "exportcamera":"导出摄像机信息",
     "addupdown":"添加级联平台",
