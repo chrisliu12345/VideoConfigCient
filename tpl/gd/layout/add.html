@@ -1,0 +1,246 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'fanyi248'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'layName'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="addlayout.layoutName"
+                       required>
+            </div>
+        </div>
+        <div class="form-inline" role="form" id="layoutTypeDiv">
+            <label for="name">{{'fanyi254'|translate}}:</label>
+            <select class="form-control" id="layoutTypeSelect" ng-model="addlayout.layoutType" >
+              <option value=1>{{'fanyi255'|translate}}</option>
+              <option value=2>{{'fanyi256'|translate}}</option>
+            </select>
+            <label for="name">{{'fanyi257'|translate}}</label>
+            <input class ="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" ng-model="addlayout.sequence">
+        </div>
+        <div id="quickLayout">
+          <div class="form-inline">
+            <label for="name">{{'fanyi258'|translate}}</label>
+            <select class="form-control"  ng-model="addlayout.disflag" >
+              <option value=1>{{'fanyi262'|translate}}</option>
+              <option value=0>{{'fanyi263'|translate}}</option>
+            </select>
+            
+          </div>
+          <div class="form-inline">
+            <label for="name">{{'fanyi259'|translate}}:</label>
+            <input class ="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" ng-model="addlayout.horizontal">
+            <label for="name">{{'fanyi260'|translate}}:</label>
+            <input class ="form-control ng-pristine ng-invalid ng-invalid-required ng-touched" type="text" ng-model="addlayout.vertical">
+          </div>
+        </div>
+        <div id="chart" ></div>
+        <!-- <button onclick="save()">存储</button>   -->
+        
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-disabled="form.$invalid" ng-click="addlayout.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="addlayout.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>
+
+<script>
+
+$(function() {
+    $('#chart').hide();
+    $("#quickLayout").hide();
+    $('#layoutTypeSelect').change(function(){
+        if($('#layoutTypeSelect').val() == '1') {
+            $('#quickLayout').show();
+            $('#chart').hide();
+        } else {
+            $('#chart').show();
+            $('#quickLayout').hide();
+        }
+    });
+});
+
+var margin = {
+    top: 2,
+    right: 2,
+    bottom: 2,
+    left: 2
+  },
+
+  width = 568 - margin.left - margin.right,
+  height = 568*0.618 - margin.top - margin.bottom;
+console.log($(".modal-body").width());
+var x = d3.scaleTime()
+    .domain([new Date(2013, 7, 1), new Date(2013, 7, 17) - 1])
+    .rangeRound([0, width]);
+var y = d3.scaleTime()
+    .domain([new Date(2013, 7, 1), new Date(2013, 7, 17) - 1])
+    .rangeRound([0, height]);
+
+var svg = d3.select("#chart").append("svg")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+svg.append("rect")
+  .attr("class", "grid-background")
+  .attr("width", width)
+  .attr("height", height);
+// gridlines in x axis function
+function make_x_gridlines() {
+    return d3.axisBottom(x)
+        .ticks(16)
+}
+// gridlines in y axis function
+function make_y_gridlines() {
+    return d3.axisLeft(y)
+        .ticks(16)
+}
+// add the X gridlines
+svg.append("g")
+    .attr("class", "grid")
+    .attr("transform", "translate(0," + height + ")")
+    .call(make_x_gridlines()
+        .tickSize(-height)
+        .tickFormat("")
+    )
+
+// add the Y gridlines
+svg.append("g")
+    .attr("class", "grid")
+    .call(make_y_gridlines()
+        .tickSize(-width)
+        .tickFormat("")
+    )
+
+// We initially generate a SVG group to keep our brushes' DOM elements in:
+var gBrushes = svg.append('g')
+  .attr("class", "brushes");
+
+// We also keep the actual d3-brush functions and their IDs in a list:
+var brushes = [];
+
+/* CREATE NEW BRUSH
+ *
+ * This creates a new brush. A brush is both a function (in our array) and a set of predefined DOM elements
+ * Brushes also have selections. While the selection are empty (i.e. a suer hasn't yet dragged)
+ * the brushes are invisible. We will add an initial brush when this viz starts. (see end of file)
+ * Now imagine the user clicked, moved the mouse, and let go. They just gave a selection to the initial brush.
+ * We now want to create a new brush.
+ * However, imagine the user had simply dragged an existing brush--in that case we would not want to create a new one.
+ * We will use the selection of a brush in brushend() to differentiate these cases.
+ */
+function newBrush() {
+  var brush = d3.brush()
+    .on("start", brushstart)
+    .on("brush", brushed)
+    .on("end", brushend);
+
+  brushes.push({id: brushes.length, brush: brush});
+
+  function brushstart() {
+    // your stuff here
+  };
+
+  function brushed() {
+    // your stuff here
+  }
+
+  function brushend() {
+
+    // Figure out if our latest brush has a selection
+    var lastBrushID = brushes[brushes.length - 1].id;
+    var lastBrush = document.getElementById('brush-' + lastBrushID);
+    var selection = d3.brushSelection(lastBrush);
+    // console.log(d3.event);
+    // If it does, that means we need another one
+    if (selection && selection[0] !== selection[1]) {
+      newBrush();
+    }
+
+    // Always draw brushes
+    drawBrushes();
+
+
+    if (!d3.event.sourceEvent) return; // Only transition after input.
+    if (!d3.event.selection) return; // Ignore empty selections.
+    var xx = [d3.event.selection[0][0],d3.event.selection[1][0]].map(x.invert),
+
+
+        yy = [d3.event.selection[0][1],d3.event.selection[1][1]].map(y.invert),
+
+        xDate = xx.map(d3.timeDay.round),
+        yDate = yy.map(d3.timeDay.round);
+
+    // If empty when rounded, use floor & ceil instead.
+    if (xDate[0] >= xDate[1]) {
+      xDate[0] = d3.timeDay.floor(xDate[0]);
+      xDate[1] = d3.timeDay.offset(xDate[1]);
+    }
+    if (yDate[0] >= yDate[1]) {
+      yDate[0] = d3.timeDay.floor(yDate[0]);
+      yDate[1] = d3.timeDay.offset(yDate[1]);
+    }
+    // d3.select(this).transition().call(d3.event.target.move, dy1.map(y));
+    d3.select(this).transition().call(d3.event.target.move, [[x(xDate[0]),y(yDate[0])],[x(xDate[1]),y(yDate[1])]]);
+    // console.log( [[x(xDate[0]),y(yDate[0])],[x(xDate[1]),y(yDate[1])]]);
+  }
+}
+
+function drawBrushes() {
+
+  var brushSelection = gBrushes
+    .selectAll('.brush')
+    .data(brushes, function (d){return d.id});
+
+    // Set up new brushes
+  brushSelection.enter()
+    .insert("g", '.brush')
+    .attr('class', 'brush')
+    .attr('id', function(brush){ return "brush-" + brush.id; })
+    .each(function(brushObject) {
+      //call the brush
+      brushObject.brush(d3.select(this));
+    });
+
+    /* REMOVE POINTER EVENTS ON BRUSH OVERLAYS
+     *
+     * This part is abbit tricky and requires knowledge of how brushes are implemented.
+     * They register pointer events on a .overlay rectangle within them.
+     * For existing brushes, make sure we disable their pointer events on their overlay.
+     * This frees the overlay for the most current (as of yet with an empty selection) brush to listen for click and drag events
+     * The moving and resizing is done with other parts of the brush, so that will still work.
+     */
+  brushSelection
+    .each(function (brushObject){
+      d3.select(this)
+        .attr('class', 'brush')
+        .selectAll('.overlay')
+        .style('pointer-events', function() {
+          var brush = brushObject.brush;
+          if (brushObject.id === brushes.length-1 && brush !== undefined) {
+            return 'all';
+          } else {
+            return 'none';
+          }
+        });
+    })
+
+  brushSelection.exit()
+    .remove();
+
+}
+
+newBrush();
+drawBrushes();
+var save = function (){
+
+}
+</script>

@@ -1,0 +1,144 @@
+<link rel="stylesheet" href="/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
+<!--<script type="text/javascript" src="../../../sysim/js/jquery.min.js"></script>-->
+<script type="text/javascript" src="../../../sysim/zTree/jquery.ztree.all.js"></script>
+
+<style>
+    #menu{
+        width: 0; /*设置为0 隐藏自定义菜单*/
+        height: 125px;
+        overflow: hidden; /*隐藏溢出的元素*/
+        box-shadow: 0 1px 1px #888,1px 0 1px #ccc;
+        position: absolute; /*自定义菜单相对与body元素进行定位*/
+    }
+    .menu{
+        width: 130px;
+        height: 25px;
+        line-height: 25px;
+        padding: 0 10px;
+    }
+    #menu1{
+          width: 0; /*设置为0 隐藏自定义菜单*/
+          height: 125px;
+          overflow: hidden; /*隐藏溢出的元素*/
+          box-shadow: 0 1px 1px #888,1px 0 1px #ccc;
+          position: absolute; /*自定义菜单相对与body元素进行定位*/
+      }
+    .menu1{
+        width: 130px;
+        height: 25px;
+        line-height: 25px;
+        padding: 0 10px;
+    }
+    #menu2{
+        width: 0; /*设置为0 隐藏自定义菜单*/
+        height: 125px;
+        overflow: hidden; /*隐藏溢出的元素*/
+        box-shadow: 0 1px 1px #888,1px 0 1px #ccc;
+        position: absolute; /*自定义菜单相对与body元素进行定位*/
+    }
+    .menu2{
+        width: 130px;
+        height: 25px;
+        line-height: 25px;
+        padding: 0 10px;
+    }
+</style>
+
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+
+    <div class="wrapper-md" ng-controller="orgCtrl as showCase">
+
+        <div class="panel panel-default ">
+            <div class="panel-heading">
+                {{'orglist'|translate}}
+               <ul class="nav nav-pills pull-right">
+                    <li style=" padding-top:4px; padding-right:4px">
+                        <!--<label>选择搜索类型:</label>
+                   <input id="searchResAttr" type="text"  ng-model="ResAttrN" placeholder="请输入设备名称">
+                      <button class="btn m-b-xs btn-sm btn-primary" ng-click="searchResAttrNodes1()">搜索
+                      </button>-->
+                        <select class="form-control" ng-model="searchType" ng-init="searchType='1'">
+                            <option value="1">{{'resname'|translate}}</option>
+                            <option value="2">{{'camname'|translate}}</option>
+                            <option value="3">{{'resipname'|translate}}</option>
+                            <option value="4">{{'camipname'|translate}}</option>
+                        </select>
+                    </li>
+                   <li style=" padding-top:4px; padding-right:4px">
+                       <input id="searchCameraOrRes" type="text"   ng-model="CameraN" placeholder="{{'inputserach'|translate}}">
+                       <button class="btn m-b-xs btn-sm btn-primary" ng-click="selectSearchType()">{{'search'|translate}}
+                       </button>
+
+                   </li>
+                   <li style=" padding-top:4px; padding-right:4px">
+                       <button class="btn m-b-xs btn-sm btn-info"   ng-click="getCameraNodes()"> {{'reconfig'|translate}}
+                       </button>
+                   </li>
+                 <!--  <li style=" padding-top:4px; padding-right:4px">
+                       <button class="btn m-b-xs btn-sm btn-info"   ng-click="getd3Test()"> d3学习
+                       </button>
+                   </li>-->
+                   <li style=" padding-top:4px; padding-right:4px">
+                   <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="showCase.addCameras()"><i
+                           class="fa fa-plus"></i>{{'batchimpcam'|translate}}
+                   </button>
+                   </li>
+
+                </ul>
+            </div>
+            <div class="panel-body" >
+                <div class="form-group" style="height:600px; overflow:auto">
+                    <div class="col-md-3">
+                       <!-- <label>{{'batchimpcam'|translate}}</label>-->
+                    </div>
+
+                    <div class="col-md-8" >
+                       <ul   my-dir class="ztree"  id="treeDemo"></ul>
+
+                    </div>
+
+                </div>
+            </div>
+
+            </div>
+
+        <div id="menu">
+            <ul>
+
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="viewCameraRight()">{{'viewcamera'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="editCameraRight()">{{'editcamera'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="deleteCameraRight()">{{'delcamera'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="addChannelRight()">{{'addChannel'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs"  ng-click="addAlarmRight()">{{'addAlarm'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs"  ng-click="deleteAlarmRight()">{{'deleteAlarm'|translate}}</button></li>
+            </ul>
+        </div>
+        <div id="menu1">
+            <ul>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="addCameraRight()">{{'addcamera'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="viewResAttrRight()">{{'viewres'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="editResAttrRight()">{{'editres'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="deleteResAttrRight()">{{'delres'|translate}}</button></li>
+                <li style="list-style-type:decimal;" ng-show="alarmConfig"><button type="button" class="btn btn-info btn-xs"  ng-click="addAlarmRight()">{{'addAlarm'|translate}}</button></li>
+                <li style="list-style-type:decimal;"  ng-show="alarmConfig"><button type="button" class="btn btn-info btn-xs"  ng-click="deleteAlarmRight()">{{'deleteAlarm'|translate}}</button></li>
+            </ul>
+        </div>
+        <div id="menu2">
+            <ul>
+                <li style="list-style-type:decimal;" ng-show="gen"><button type="button" class="btn btn-danger btn-xs" ng-click="addParentGroupRight()">{{'rootgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="addGroupRight()">{{'addgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="viewGroupRight()">{{'viewgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="editGroupRight()">{{'editgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="deleteGroupRight()">{{'delgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs" ng-click="addResAttrRight()">{{'addres'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs"  ng-click="exportGroups()">{{'exportgroup'|translate}}</button></li>
+                <li style="list-style-type:decimal;"><button type="button" class="btn btn-info btn-xs"  ng-click="exportResAttr()">{{'exportcamera'|translate}}</button></li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+

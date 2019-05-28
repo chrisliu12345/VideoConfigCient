@@ -1,0 +1,208 @@
+
+<link rel="stylesheet" href="/css/bootstrapStyle/bootstrapStyle.css" type="text/css">
+<!--<script type="text/javascript" src="../../../sysim/js/jquery.min.js"></script>-->
+<script type="text/javascript" src="../../../sysim/zTree/jquery.ztree.all.js"></script>
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  ">
+    <div class="wrapper-md" ng-controller="alarmCtrl as showCase">
+
+        <div class="container">
+            <div class="row">
+
+                <div class="panel panel-default col-xs-12" ng-show="query_plan" >
+                    <div class="panel-heading">
+                        {{'baojing'|translate}}
+                        <ul class="nav nav-pills pull-right">
+                            <li style=" padding-top:4px; padding-right:4px;width: 100%;height: 100%">
+                                <button class="btn m-b-xs btn-sm btn-primary" ng-click="showCase.selectAndContinue()">{{'add'|translate}}
+                                </button>
+                            </li>
+
+                        </ul>
+                    </div>
+                    <div class="panel-body">
+                        <div>
+                            <input type="button" ng-click="showCase.removeAllPlan()" value="{{'alldetele'|translate}}" class="btn  btn-danger btn-sm" ng-show="myWar" >
+                            <input type="button" ng-click="showCase.removeAllPlan()" value="{{'batchdel'|translate}}" class="btn btn-info btn-sm"><br>
+
+                        </div>
+
+                        <form class="form-inline" >
+                            <table datatable id="alarmList" dt-dataset="dtDataset" dt-options="dtOptions" dt-columns="dtColumns" class="table table-striped table-bordered" >
+                            </table>
+                        </form>
+
+                    </div>
+                </div>
+
+
+                <!--新增摄像机录像计划1.-->
+                <div class="panel panel-default col-md-6" ng-show="select_plan" style="margin-left: 25%">
+                    <form name="form1" role="form" class="form-horizontal form-validation">
+                        <div class="modal-header">
+                            <h3 class="modal-title" align="center">{{'addalarmconfig'|translate}}</h3>
+                        </div>
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>选择报警设备</label>
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <select class="form-control" ng-model="alarmIdAndName" ng-options="x.name for x in alarmItems" required>
+
+                                    </select>
+                                </div>
+                            </div>
+                             <div class="form-group">
+                               <div class="col-md-3">
+                                   <label>{{'fanyi50'|translate}}</label>
+                               </div>
+
+                             <div class="col-md-9">
+                                   <input type="text" class="form-control" ng-model="alarm.Input_channel"
+                                          placeholder="{{'fanyi092'|translate}}" required>
+                               </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>{{'fanyi51'|translate}}</label>
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <select class="form-control" ng-model="alarm.AlarmMethod" ng-init="alarm.AlarmMethod='1'"
+                                            ng-change="chanegAlarmMethod()" required>
+                                        <option value="1">1：{{'fanyi52'|translate}}</option>
+                                        <option value="2">2：{{'fanyi53'|translate}}</option>
+                                        <option value="3">3：{{'fanyi54'|translate}}</option>
+                                        <option value="4">4：{{'fanyi55'|translate}}</option>
+                                        <option value="5">5：{{'fanyi56'|translate}}</option>
+                                        <option value="6">6：{{'fanyi57'|translate}}</option>
+                                        <option value="7">7：{{'fanyi58'|translate}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="showSelect">
+                                <div class="col-md-3">
+                                    <label>{{'fanyi59'|translate}}</label>
+                                </div>
+                                <div class="col-md-9">
+                                    <select class="form-control" ng-model="alarm.AlarmType">
+                                        <option ng-repeat="x in sites" value="{{x.value}}">{{x.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>{{'fanyi60'|translate}}</label>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <ui-select multiple ng-model="mutinput.users" theme="bootstrap">
+                                        <ui-select-match placeholder="{{'fanyi61'|translate}}...">{{$item.realName}}</ui-select-match>
+                                        <ui-select-choices repeat="item in userList | filter: $select.search">
+                                            <div ng-bind-html="item.realName | highlight: $select.search"></div>
+                                            <small ng-bind-html="item.phone | highlight: $select.search"></small>
+                                        </ui-select-choices>
+                                    </ui-select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>{{'fanyi62'|translate}}</label>
+                                </div>
+
+                                <div class="col-sm-9">
+                                    <ul>
+                                        <li style="display: inline;">
+                                            <input type="checkbox" ng-model="work1" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A1')">{{'fanyi63'|translate}}
+                                        </li>
+                                        <li style="display: inline; margin-left: 20px">
+                                            <input type="checkbox" ng-model="work2" ng-checked="selectTypeShow"
+                                                                           ng-click="showCase.updateSelectionAllA($event,'A2')">{{'fanyi64'|translate}}
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work3" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A3')">{{'fanyi091'|translate}}
+                                        </li>
+                                        <br>
+                                        <li style="display: inline;">
+                                            <input type="checkbox" ng-model="work4" ng-checked="selectTypeShow"
+                                                                            ng-click="showCase.updateSelectionAllA($event,'A4')">{{'fanyi65'|translate}}
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work5" ng-checked="selectTypeShow"
+                                                          ng-click="showCase.updateSelectionAllA($event,'A5')">预置位报警
+                                        </li>
+                                        <li style="display: inline;margin-left: 20px">
+                                            <input type="checkbox" ng-model="work6" ng-checked="selectTypeShow"
+                                                         ng-click="showCase.updateSelectionAllA($event,'A6')">报警录像
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>{{'fanyi66'|translate}}</label>
+                                </div>
+
+                                <div class="col-md-9">
+
+                                    <button class="btn btn-default" type="button" ng-click="showCase.selectquanxian1()">
+                                        {{'fanyi67'|translate}}
+                                    </button>
+                                    <span class="glyphicon glyphicon-ok" ng-show="selectLinkCamera"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>报警录像时间</label>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <select class="form-control" ng-model="alarm.Linkage_Info" ng-init="alarm.Linkage_Info='-1'"
+                                            required>
+                                        <option value="-1">不存储</option>
+                                        <option value="30000">30秒</option>
+                                        <option value="60000">1分钟</option>
+                                        <option value="120000">2分钟</option>
+                                        <option value="300000">5分钟</option>
+                                        <option value="600000">10分钟</option>
+                                    </select>
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label>预置位号</label>
+                                </div>
+                                <div class="col-md-3">
+                                   <input type="text" class="form-control" ng-model="alarm.Prest"
+                                                          placeholder="枪机不填写">
+                                </div>
+                            </div>
+                        </div>
+
+
+
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="button" ng-disabled="form1.$invalid"
+                                        ng-click="showCase.submit()">{{'fanyi45'|translate}}
+                                </button>
+                                <button class="btn btn-warning" type="button" ng-click="showCase.cancel()">{{'quxiao'|translate}}</button>
+                            </div>
+                    </form>
+                </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+

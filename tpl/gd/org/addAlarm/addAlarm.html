@@ -1,0 +1,185 @@
+           <form name="form1" role="form" class="form-horizontal form-validation" ng-init="selectCameraNow()">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">{{'addAlarm'|translate}}</h3>
+        <div ng-show="false">
+            <!-- 画单绊线数据存储-->
+            <input id="simpline0" type="text" value="">
+            <input id="simpline1" type="text" value="">
+            <!--画双绊线数据存储-->
+            <input id="doubline0" type="text" value="">
+            <input id="doubline1" type="text" value="">
+            <input id="doubline2" type="text" value="">
+            <input id="doubline3" type="text" value="">
+            <!--画区域数据存储-->
+            <input id="mulline" type="text" value="" maxlength="9999">
+            <!--画箭头数据存储-->
+            <input id="arrow0" type="text" value="">
+            <input id="arrow2" type="text" value="">
+        </div>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'selectType'|translate}}</label>
+            </div>
+            <div class="col-md-6">
+                <select ng-model="AlarmData.type" type="text" class="form-control" ng-options="x.name for x in items"
+                        ng-change="addVm.selecttype(AlarmData.type)">
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'shezhiCong'|translate}}</label>
+            </div>
+            <div class="col-md-6" id="finishData">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-9" ng-show="drawVideo">
+                <div align="center" style="position:relative;width:560px; height:450px;border-left: 50px">
+                    <div class="media bg" style="position:absolute;">
+                        <video id="video1" autoplay="autoplay"
+                               style="width:560px; height:450px; object-fit: fill;">
+                        </video>
+                    </div>
+                    <div id="test1" style="position:absolute;">
+                        <svg id="test1svg" width="560" height="450">
+
+                        </svg>
+                    </div>
+                    <div id="test2" style="position:absolute;">
+                        <svg id="test2svg" width="560" height="450">
+                            <defs>
+                                <marker id="markerArrow"  markerWidth="12" markerHeight="12" refx="6" refy="6"
+                                        orient="auto" markerUnits="strokeWidth" viewBox="0 0 12 12">
+                                    <path d="M2,2 L10,6 L2,10 L6,6 L2,2" style="fill: red;" />
+                                </marker>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div id="test3" style="position:absolute;">
+                        <svg id="test3svg" width="560" height="450">
+                        </svg>
+                    </div>
+                    <div id="test4" style="position:absolute;">
+                        <svg id="test4svg" width="560" height="450">
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-4" ng-show="alarmLine">
+                <button id="drow1" type="button" class="btn btn-primary">{{'simpleLine'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm1">设置</button>
+
+            </div>
+            <div class="col-md-4" ng-show="alarmArrow">
+                <button id="drow2" type="button" class="btn btn-primary">{{'arrow'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm2">设置</button>
+
+            </div>
+            <div class="col-md-4" ng-show="alarmDoubleLine">
+                <button id="drow3" type="button" class="btn btn-primary">{{'doubleLine'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm3">设置</button>
+
+            </div>
+            <div class="col-md-4" ng-show="alarmMulLine">
+                <button id="drow4" type="button" class="btn btn-primary">{{'pArea'|translate}}</button>
+                <button class="btn btn-success" type="button" ng-click="addVm.ok()" id="confirm4">设置</button>
+
+            </div>
+            <div class="col-md-2" >
+            </div>
+            <div class="col-md-16" ng-show="cleanDraw">
+               <!-- <button class="btn btn-lg btn-success" type="button" ng-click="addVm.ok()" id="confirm">设置</button>-->
+
+                <button id="clean1data" type="button" class="btn btn-danger" ng-click="addVm.deleteThis()" style="margin-left: 10%">{{'cancelThisData'|translate}}</button>
+               <!-- <button id="cleandata" type="button" class="btn btn-danger" ng-click="addVm.deleteAll()">{{'deleteAll'|translate}}</button>-->
+                <button id="clean" type="button" class="btn btn-danger">{{'cleanCan'|translate}}</button>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button" ng-click="addVm.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="addVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+
+</form>
+<link rel="stylesheet" href="/css/alarm.css" type="text/css"/>
+<script src="/vendor/alarm/line.js"></script>
+<script src="/vendor/alarm/doubleline.js"></script>
+<!--<script src="/vendor/alarm/rect.js"></script>-->
+<script src="/vendor/alarm/mulline.js"></script>
+<script src="/vendor/alarm/arrow.js"></script>
+
+<script>
+    //初始化全部不显示
+    $(function () {
+        $('#test1').hide();
+        $("#test2").hide();
+        $("#test3").hide();
+        $("#test4").hide();
+    });
+    //画单线
+    $('#drow1').click(function () {
+        $("#confirm1").attr('disabled',false);
+        $('#test1').show();
+        $('#test2').hide();
+        $('#test3').hide();
+        $("#test4").hide();
+        if ($("#test1svg").length <= 0) {
+            d3.select("#test1").append("svg").attr("width", "560").attr("height", "450").attr("id", "test1svg");
+        }
+        lines();
+    });
+    //画箭头
+    $('#drow2').click(function () {
+        $("#confirm3").attr('disabled',false);
+        $('#test2').show();
+        $('#test1').hide();
+        $('#test3').hide();
+        $("#test4").hide();
+         arrow();
+    });
+    //画双线
+    $('#drow3').click(function () {
+        $("#confirm2").attr('disabled',false);
+        $('#test3').show();
+        $('#test2').hide();
+        $('#test1').hide();
+        $("#test4").hide();
+        if ($("#test3svg").length <= 0) {
+            d3.select("#test3").append("svg").attr("width", "560").attr("height", "450").attr("id", "test3svg");
+
+        }
+        doublelines();
+    });
+    //画折线
+    $('#drow4').click(function () {
+        $("#confirm4").attr('disabled',false);
+        $('#test3').hide();
+        $('#test2').hide();
+        $('#test1').hide();
+        $("#test4").show();
+        if ($("#test4svg").length <= 0) {
+            d3.select("#test4").append("svg").attr("width", "560").attr("height", "450").attr("id", "test4svg");
+        }
+        mullines();
+    });
+
+    //清除画布
+    $('#clean').click(function () {
+        /*$("#confirm").attr('disabled',false);*/
+        d3.select("#test1").select("svg").remove();
+        d3.select("#test3").select("svg").remove();
+        d3.select("#test2").select("svg").select("line").remove();
+        d3.select("#test4").select("svg").remove();
+    });
+
+</script>

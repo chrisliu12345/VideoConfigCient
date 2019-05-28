@@ -1,0 +1,23 @@
+<div class="modal-body" >
+    <table class="table">
+        <caption>{{'fanyi385'|translate}}：</caption>
+        <thead>
+        <tr >
+            <th>ID</th>
+            <th>{{'fanyi73'|translate}}</th>
+            <th>{{'fanyi404'|translate}}</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="x in datasView" >
+            <td >{{x.ServiceID}}</td>
+            <td >{{x.ConfigName}}</td>
+            <td>{{x.ConfigValue}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="modal-footer">
+    <!--<button class="btn btn-primary" ng-show="look" type="button" ng-click="SipVm.submit()">提交</button>-->
+    <button class="btn btn-warning" type="button" ng-click="cancel()">{{'quxiao'|translate}}</button>
+</div>

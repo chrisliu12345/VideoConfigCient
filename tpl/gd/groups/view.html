@@ -1,0 +1,85 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">查看组信息</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>组ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.GroupID"
+                       disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>类型</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.Type" disabled/>
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>虚拟组织ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.VirtualOrgID" disabled/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>组名</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.name" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>父组ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.ParentID" disabled>
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>业务分组ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.BusinessGroupID" disabled>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>父虚拟组织ID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="gro.ParentOrgID" disabled>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+
+        <button class="btn btn-warning" type="button" ng-click="viewVm.cancel()">取消</button>
+    </div>
+
+</form>

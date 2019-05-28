@@ -1,0 +1,288 @@
+<form name="form1" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">新增摄像机</h3>
+    </div>
+    <div class="modal-body">
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>选择关联父设备</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="ParID" required>
+                    <option ng-repeat="x in site4" value="{{x.ResID}}|{{x.DeviceID}}|{{x.CivilCode}}|{{x.ResType}}">{{x.Name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>选择转发服务IP</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.StreamId" required>
+                    <option ng-repeat="x in site5" value="{{x.ServiceID}}">{{x.IPAddress}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>摄像机名称</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Alias" name="Alias" required>
+                <span style="color:red" ng-show="form1.Alias.$dirty && form1.Alias.$invalid">
+                <span ng-show="form1.Alias.$error.required">摄像机名称是必须的。</span>
+                </span>
+            </div>
+        </div>
+
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>行政区划</label>
+            </div>
+
+            <div class="col-md-9">
+               &lt;!&ndash; <select class="form-control" ng-model="camera.CivilCode" ng-options="x for x in site3">
+                </select>&ndash;&gt;
+                <button class="btn btn-default" type="button"  ng-click="addCamVm.selectquanxian()">点我进行选择</button>
+                {{getzTree1.name}}
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>所属场所类型</label>
+            </div>
+
+            <div class="col-md-9">
+                <!-- <select class="form-control" ng-model="camera.CivilCode" ng-options="x for x in site3">
+                 </select>-->
+                <button class="btn btn-default" type="button"  ng-click="addCamVm.selectchangsuo()">点我进行选择</button>
+                {{selectNodePlace.name}}
+            </div>
+        </div>
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>摄像机SIPID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.codec16" ng-maxlength="20"
+                       ng-minlength="20" name="codec16"  placeholder="不能为空！只能为20位数字" >
+                <div class="error" ng-show="form1.codec16.$dirty && form1.codec16.$invalid"
+                     style="color:#F00">
+                    <small class="error" ng-show="form1.codec16.$error.minlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="form1.codec16.$error.maxlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="form1.codec16.$error.required">不能为空</small>
+                </div>
+
+            </div>
+        </div>-->
+        <div class="form-group" >
+            <div class="col-md-3">
+                <label>PTZ控制类型</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.PtzType" ng-init="camera.PtzType='1'" required>
+                    <option value="1">1：球机</option>
+                    <option value="2">2：半球</option>
+                    <option value="3">3：固定枪机</option>
+                    <option value="4">4：遥控枪机</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>安装地址</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Address" name="Address" placeholder="可空">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>保密属性</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="camera.Secrecy" ng-init="cameraSecrecy='0'">
+                    <option value="0">0：不涉密</option>
+                    <option value="1">1：涉密</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group"  ng-show="mywar">
+            <div class="col-md-3">
+                <label>警区</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Block" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>经度</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Longitude" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>纬度</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Latitude" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>位置属性</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.PositionType" ng-init="camera.PositionType=''">
+                    <option value=""></option>
+                    <option value="0">0：未知</option>
+                    <option value="1">1：省际检查站</option>
+                    <option value="2">2：党政机关</option>
+                    <option value="3">3：车站码头</option>
+                    <option value="4">4：中心广场</option>
+                    <option value="5">5：体育场馆</option>
+                    <option value="6">6：商业中心</option>
+                    <option value="7">7：宗教场所</option>
+                    <option value="8">8：校园周边</option>
+                    <option value="9">9：治安复杂区域</option>
+                    <option value="10">10：交通干线</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>室内外属性</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="camera.RoomType" ng-init="camera.RoomType='1'">
+                    <option value=""></option>
+                    <option value="1">1：室外</option>
+                    <option value="2">2：室内</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>用途属性</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.UseType" >-->
+                <select class="form-control" ng-model="camera.UseType" ng-init="camera.UseType=''">
+                    <option value=""></option>
+                    <option value="1">1：治安</option>
+                    <option value="2">2：交通</option>
+                    <option value="3">3：重点</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>补光属性</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.SupplyLightType" >-->
+                <select class="form-control" ng-model="camera.SupplyLightType" ng-init="camera.SupplyLightType='1'">
+                    <option value=""></option>
+                    <option value="1">1：无补光</option>
+                    <option value="2">2：红外补光</option>
+                    <option value="3">3：白光补光</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>监控方位</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.DirectionType" >-->
+                <select class="form-control" ng-model="camera.DirectionType" ng-init="camera.DirectionType='0'">
+                    <option value=""></option>
+                    <option value="0">0：未知</option>
+                    <option value="1">1：东</option>
+                    <option value="2">2：西</option>
+                    <option value="3">3：南</option>
+                    <option value="4">4：北</option>
+                    <option value="5">5：东南</option>
+                    <option value="6">6：东北</option>
+                    <option value="7">7：西南</option>
+                    <option value="8">8：西北</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>分辨率</label>
+            </div>
+
+            <div class="col-md-9">
+                <div ng-repeat="y in zu1">
+                    <input type="checkbox" id="{{y.id}}" name="{{y.value}}" ng-click="updateedSelect($event,y.value)">{{y.name}}
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>安装高度</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Height" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>俯仰角</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.PitchAngle">
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>方位角</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Azimuth" >
+            </div>
+        </div>
+    </div>
+    <div align="left" >&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-info" ng-click="myopen()"  data-toggle="button" >高级</button>
+        <button type="button" class="btn btn-sm btn-success" ng-click="myclose()"  data-toggle="button" >折叠</button>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button"  ng-disabled="form1.$invalid" ng-click="addCamVm.submit()">提交</button>
+        <button class="btn btn-warning" type="button" ng-click="addCamVm.cancel()">取消</button>
+    </div>
+
+</form>

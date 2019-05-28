@@ -1,0 +1,70 @@
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title text-center">批量上传用户</h3>
+    </div>
+    <div class="modal-body">
+        <ul style="list-style-type:none">
+            <!--<li>新建组织架构 <a ng-click="gotoOrg()"><span>组织架构管理</span></a></li>&nbsp;&nbsp;-->
+            <li>
+                <div class="form-group">
+                    <span class="col-md-5 text-right"><bold>第一步：</bold> 请选择要导入的APP&nbsp;&nbsp;</span>
+                    <div class="col-md-4">
+                        <ui-select ng-model="apps.selected" theme="bootstrap">
+                            <ui-select-match placeholder="请选择部门...">{{$select.selected.name}}</ui-select-match>
+                            <ui-select-choices repeat="item in apps | filter: $select.search">
+                                <div ng-bind-html="item.name | highlight: $select.search"></div>
+                                <small ng-bind-html="item.description | highlight: $select.search"></small>
+                            </ui-select-choices>
+                        </ui-select>
+
+                    </div>
+                </div>
+                <!--<div class="from-group">-->
+                <!--<label class="col-md-3 text-left" >第二步：请上传用户信息文件</label>-->
+                <!--<div  class="col-md-4">-->
+                <!--<input type="file" nv-file-select uploader="uploader"/>-->
+                <!--</div>-->
+                <!--</div>-->
+            </li>
+
+            <!--<li><a href="/ma/app/downloadFile">点击下载批量导入用户模板</a></li>-->
+            <li>
+
+                <!--<span>上传填好好的用户列表信息 </span>-->
+                <span class="col-md-5">第二步：请上传用户信息文件</span>
+                <div class="col-md-4">
+                    <input type="file" nv-file-select uploader="uploader"/>
+                    <input name="token" type="hidden" ng-model="token" maxlength="1000">
+                </div>
+                <br/>
+            </li>
+
+            <br/>
+            <li>
+                <!--<h4>说明</h4>-->
+                <p style="font-style: oblique"> <p style="font-size:1.3em ;">Tips:</p> 请参考此模板导入用户模板&nbsp;:&nbsp;
+                    <a href="ma/app/downloadFile"
+                       style="font-style:normal; font-size:1.5em">
+                       <!--ma/app/downloadFile-->
+                        <i class="glyphicon glyphicon-cloud-download"></i>下载模板</a>
+                </p>
+            </li>
+
+        </ul>
+
+        <!--<div ng-show="uploader.isHTML5">-->
+        <!--<div class="well my-drop-zone" nv-file-over="" uploader="uploader">-->
+        <!--Base Drop zone-->
+        <!--</div>-->
+        <!--</div>-->
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-addon btn-success" ng-click="uploadFile()"
+                ng-disabled="!uploader.getNotUploadedItems().length">
+            <i class="fa fa-arrow-circle-o-up"></i> 上传
+        </button>
+        <button class="btn btn-warning" type="button" ng-click="addsVm.cancel()">取消</button>
+    </div>
+
+</form>
+

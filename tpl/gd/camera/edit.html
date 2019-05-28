@@ -1,0 +1,300 @@
+
+<div class="modal-header-without-border-bottom">
+    <div class="col-md-4">
+        <!--<h3 class="modal-title ">查看用户</h3>-->
+    </div>
+    <div>
+        <ul id="userViewTab" class="nav nav-tabs">
+            <li class="active"><a data-target ="#basicInfo" data-toggle="tab">主要属性</a></li>
+            <li><a data-target ="#accountInfo" data-toggle="tab">摄像机配置</a></li>
+            <li><a data-target="#avator" data-toggle="tab">其他</a> </li>
+        </ul>
+    </div>
+</div>
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade in active " id="basicInfo">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+                      <!--  <label>资源ID</label>-->
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="hidden" class="form-control" ng-model="camera.ResID" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>所属设备ID</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.NvrID"  readonly>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>摄像机名称</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.Alias" >
+                    </div>
+                </div>
+                <div class="form-group">
+                      <div class="col-md-3">
+                          <label>更改通道号</label>
+                      </div>
+
+                    <div class="col-md-9">
+                       <select ng-model="Nvr1" type="text" class="form-control"
+                               ng-change="editVm.selectChannel(Nvr1)"  ng-init="Nvr1=0">
+                           <option value="0">请选择需要修改的通道号</option>
+                            <option ng-repeat="x in urls" value="{{x.NvrChannelID}}|{{x.PlayUrl}}">{{x.NvrChannelID}}</option>
+                        </select>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>PlayURL</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.PlayUrl" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>转发服务IP</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="hidden" class="form-control" ng-model="camera.StreamingID" >
+                        <select class="form-control" ng-model="StreamId"  ng-init="StreamId=0">
+                            <option value="0">请选择需要的转发服务IP</option>
+                            <option ng-repeat="x in site5" value="{{x.ServiceID}}">{{x.ServiceName}}-{{x.IPAddress}}</option>
+                        </select>
+                        当前的转发服务IP为:{{StreamIDName.IPAddress}}
+                    </div>
+                </div>
+             <!--   <div class="form-group">
+                    <div class="col-md-3">
+                        <label>转发ID及IP地址</label>
+                    </div>
+
+                    <div class="col-md-3">
+                        <input type="text" class="form-control" ng-model="camera.StreamingID" disabled>
+                    </div>
+                    <div class="col-md-6">
+                        <input type="text" class="form-control" ng-model="camera.StreamingIP" disabled>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>更改转发IP为：</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <select class="form-control" ng-model="camera.editStreamingID" >
+                            <option ng-repeat="x in site4" value="{{x.ResID}}|{{x.DeviceID}}|{{x.CivilCode}}|{{x.ResType}}">{{x.Name}}</option>
+                        </select>
+                    </div>
+                </div>-->
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="editVm.cancel()">关闭</button>
+        </div>
+    </div>
+
+    <div class="tab-pane fade " id="accountInfo">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>PTZ控制类型</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.PtzType" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>安装高度</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.Height" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>俯仰角</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.PitchAngle" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>方位角</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.Azimuth" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>位置属性</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.PositionType" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>室内外属性</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.RoomType" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>用途属性</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.UseType" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>补光属性</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.SupplyLightType" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>监控方位</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.DirectionType" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>分辨率</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.Resolution" >
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="editVm.cancel()">关闭</button>
+        </div>
+    </div>
+
+    <div class="tab-pane fade" id="avator">
+        <div class="modal-body">
+            <form role="form" class="form-horizontal">
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>业务分组ID</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.BusinessGroupID" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>下载倍速范围</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.DownLoadSpeed" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>空域编码能力</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.SVCSpaceSupportMode" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>时域编码能力</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.SVCTimeSupportMode" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>云台控制URL</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.PtzURL" >
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>锁定用户ID</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.LockedUsr" >
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-3">
+                        <label>优先使用回放</label>
+                    </div>
+
+                    <div class="col-md-9">
+                        <input type="text" class="form-control" ng-model="camera.ReplayID" >
+                    </div>
+                </div>
+
+
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" type="button" ng-click="editVm.submit()">提交</button>
+            <button class="btn btn-warning" type="button" ng-click="editVm.cancel()">关闭</button>
+        </div>
+
+    </div>
+</div>
+
+
+
+
+

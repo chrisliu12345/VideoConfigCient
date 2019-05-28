@@ -1,0 +1,31 @@
+
+<form name="form" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title">{{'fanyi84'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+        <ul>
+            <!--<li><a href="javascript:void(0)" ng-click="download_codec()">点击下载批量导入模板</a></li>-->
+
+
+            <li ><a href="ma/encoder/downloadFile"><h4><span class="label label-warning">{{'fanyi85'|translate}}</span></h4></a></li>
+            <hr>
+            <li>
+                <span>{{'fanyi86'|translate}} </span> <input type="file" nv-file-select  uploader="uploader"/>
+                <input name="token" type="hidden" ng-model="token" maxlength="1000">
+
+            </li>
+
+        </ul>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-addon btn-success" ng-click="uploadFileCode()"
+                ng-disabled="!uploader.getNotUploadedItems().length">
+            <i class="fa fa-arrow-circle-o-up"></i> {{'fanyi87'|translate}}
+        </button>
+        <button class="btn btn-warning" type="button" ng-click="addsVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>

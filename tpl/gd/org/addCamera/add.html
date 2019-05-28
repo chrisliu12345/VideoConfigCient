@@ -1,0 +1,293 @@
+<form name="form1" role="form" class="form-horizontal form-validation">
+    <div class="modal-header">
+        <h3 class="modal-title" align="center">{{'fanyi122'|translate}}</h3>
+    </div>
+    <div class="modal-body">
+
+      <!--  <div class="form-group">
+            <div class="col-md-3">
+                <label>选择关联父设备</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="ParID" required>
+                    <option ng-repeat="x in site4" value="{{x.ResID}}|{{x.DeviceID}}|{{x.CivilCode}}|{{x.ResType}}">{{x.Name}}</option>
+                </select>
+            </div>
+        </div>-->
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi124'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.StreamId" required>
+                    <option ng-repeat="x in site5" value="{{x.ServiceID}}">{{x.IPAddress}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="showCamera">
+            <div class="col-md-3">
+                <label>{{'fanyi30'|translate}}</label>
+            </div>
+
+            <div class="col-md-9" >
+                <input type="text" class="form-control" ng-model="camera.Alias" name="Alias">
+            </div>
+        </div>
+
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>行政区划</label>
+            </div>
+
+            <div class="col-md-9">
+               &lt;!&ndash; <select class="form-control" ng-model="camera.CivilCode" ng-options="x for x in site3">
+                </select>&ndash;&gt;
+                <button class="btn btn-default" type="button"  ng-click="addCamVm.selectquanxian()">点我进行选择</button>
+                {{getzTree1.name}}
+            </div>
+        </div>-->
+    <!--   <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi269'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="PlaceParent" ng-change="chanegPlace()"  >
+                    <option ng-repeat="x in site6" value="{{x.id}}">{{x.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="showSelect">
+            <div class="col-md-3">
+                <label>{{'fanyi270'|translate}}</label>
+            </div>
+            <div class="col-md-9">
+                <select class="form-control" ng-model="camera.selectPlaceID" >
+                    <option ng-repeat="x in site7" value="{{x.id}}">{{x.name}}</option>
+                </select>
+            </div>
+        </div>-->
+       <!-- <div class="form-group">
+            <div class="col-md-3">
+                <label>摄像机SIPID</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.codec16" ng-maxlength="20"
+                       ng-minlength="20" name="codec16"  placeholder="不能为空！只能为20位数字" >
+                <div class="error" ng-show="form1.codec16.$dirty && form1.codec16.$invalid"
+                     style="color:#F00">
+                    <small class="error" ng-show="form1.codec16.$error.minlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="form1.codec16.$error.maxlength">此数据的长度必须为20位</small>
+                    <small class="error" ng-show="form1.codec16.$error.required">不能为空</small>
+                </div>
+
+            </div>
+        </div>-->
+        <div class="form-group" >
+            <div class="col-md-3">
+                <label>{{'fanyi132'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.PtzType" ng-init="camera.PtzType='1'" required>
+                    <option value="1">1：{{'fanyi133'|translate}}</option>
+                    <option value="2">2：{{'fanyi134'|translate}}</option>
+                    <option value="3">3：{{'fanyi135'|translate}}</option>
+                    <option value="4">4：{{'fanyi136'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi137'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Address" name="Address" placeholder="可空">
+
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-3">
+                <label>{{'fanyi139'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="camera.Secrecy" ng-init="cameraSecrecy='0'">
+                    <option value="0">0：{{'fanyi140'|translate}}</option>
+                    <option value="1">1：{{'fanyi141'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group"  ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi142'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Block" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi143'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Longitude" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi144'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Latitude" >
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi145'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+
+                <select class="form-control" ng-model="camera.PositionType" ng-init="camera.PositionType=''">
+                    <option value=""></option>
+                    <option value="0">0：{{'fanyi146'|translate}}</option>
+                    <option value="1">1：{{'fanyi147'|translate}}</option>
+                    <option value="2">2：{{'fanyi148'|translate}}</option>
+                    <option value="3">3：{{'fanyi149'|translate}}</option>
+                    <option value="4">4：{{'fanyi150'|translate}}</option>
+                    <option value="5">5：{{'fanyi151'|translate}}</option>
+                    <option value="6">6：{{'fanyi152'|translate}}</option>
+                    <option value="7">7：{{'fanyi153'|translate}}</option>
+                    <option value="8">8：{{'fanyi154'|translate}}</option>
+                    <option value="9">9：{{'fanyi155'|translate}}</option>
+                    <option value="10">10：{{'fanyi156'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi157'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <select class="form-control" ng-model="camera.RoomType" ng-init="camera.RoomType='1'">
+                    <option value=""></option>
+                    <option value="1">1：{{'fanyi158'|translate}}</option>
+                    <option value="2">2：{{'fanyi159'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi160'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.UseType" >-->
+                <select class="form-control" ng-model="camera.UseType" ng-init="camera.UseType=''">
+                    <option value=""></option>
+                    <option value="1">1：{{'fanyi161'|translate}}</option>
+                    <option value="2">2：{{'fanyi162'|translate}}</option>
+                    <option value="3">3：{{'fanyi163'|translate}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi164'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.SupplyLightType" >-->
+                <select class="form-control" ng-model="camera.SupplyLightType" ng-init="camera.SupplyLightType='1'">
+                    <option value=""></option>
+                    <option value="1">1：{{'fanyi165'|translate}}</option>
+                    <option value="2">2：{{'fanyi166'|translate}}</option>
+                    <option value="3">3：{{'fanyi167'|translate}}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi223'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <!--<input type="text" class="form-control" ng-model="camera.DirectionType" >-->
+                <select class="form-control" ng-model="camera.DirectionType" ng-init="camera.DirectionType='0'">
+                    <option value=""></option>
+                    <option value="0">0：{{'fanyi168'|translate}}</option>
+                    <option value="1">1：{{'fanyi169'|translate}}</option>
+                    <option value="2">2：{{'fanyi170'|translate}}</option>
+                    <option value="3">3：{{'fanyi171'|translate}}</option>
+                    <option value="4">4：{{'fanyi172'|translate}}</option>
+                    <option value="5">5：{{'fanyi173'|translate}}</option>
+                    <option value="6">6：{{'fanyi175'|translate}}</option>
+                    <option value="7">7：{{'fanyi174'|translate}}</option>
+                    <option value="8">8：{{'fanyi176'|translate}}</option>
+
+                </select>
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi177'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <div ng-repeat="y in zu1">
+                    <input type="checkbox" id="{{y.id}}" name="{{y.value}}" ng-click="updateedSelect($event,y.value)">{{y.name}}
+                </div>
+
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi178'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Height" >
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi179'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.PitchAngle">
+            </div>
+        </div>
+        <div class="form-group" ng-show="mywar">
+            <div class="col-md-3">
+                <label>{{'fanyi180'|translate}}</label>
+            </div>
+
+            <div class="col-md-9">
+                <input type="text" class="form-control" ng-model="camera.Azimuth" >
+            </div>
+        </div>
+    </div>
+    <div align="left" >&nbsp;&nbsp;&nbsp;
+        <button type="button" class="btn btn-sm btn-info" ng-click="myopen()"  data-toggle="button" >{{'fanyi181'|translate}}</button>
+        <button type="button" class="btn btn-sm btn-success" ng-click="myclose()"  data-toggle="button" >{{'fanyi182'|translate}}</button>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn-primary" type="button"  ng-disabled="form1.$invalid" ng-click="addCamVm.submit()">{{'fanyi45'|translate}}</button>
+        <button class="btn btn-warning" type="button" ng-click="addCamVm.cancel()">{{'quxiao'|translate}}</button>
+    </div>
+
+</form>

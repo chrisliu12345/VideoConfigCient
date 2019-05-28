@@ -1,0 +1,49 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false;
+    app.settings.asideDock = false;
+  " >
+    <div class="wrapper-md" ng-controller="userCtrl as showCase">
+   <div class="col-md-1">
+         <!--<tree-grid tree-data="tree_data" tree-control="org_tree"
+                       expand-on="expanding_property"
+                       on-select="org_tree_handler_select(branch)"
+                       on-click="org_tree_handler_click(branch)"
+            ></tree-grid>-->
+        </div>
+        <div class="panel panel-default col-md-10"  >
+            <div class="panel-heading" >
+                <ul class="nav nav-pills pull-right">
+                    <li style=" padding-top:4px; padding-right:4px">
+                        <!--<button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="showCase.batchUpdateUserOrg()"
+                                ng-disabled="!showBatchUpdateUserOrgButton"><i
+                                class="fa fa-adjust" ng-disabled="!showBatchUpdateUserOrgButton"></i>调整部门
+                        </button>-->
+                        <button class="btn m-b-xs btn-sm btn-danger btn-addon" ng-click="showCase.batchDeleteUser()"
+                                ng-disabled="!showBatchUpdateUserOrgButton"><i
+                                class="fa fa-adjust" ng-disabled="!showBatchUpdateUserOrgButton"></i>
+                            {{'batchdel'|translate}}
+                        </button>
+                        <button class="btn m-b-xs btn-sm btn-primary btn-addon" ng-click="showCase.addUser()"><i
+                                class="fa fa-plus"></i>{{'add'|translate}}
+                        </button>
+                       <!-- <button class="btn m-b-xs btn-sm btn-success btn-addon" ng-click="showCase.addUsers()"><i
+                                class="fa fa-plus"></i>批量导入用户
+                        </button>-->
+                    </li>
+
+                </ul>
+                {{'userlist'|translate}}
+            </div>
+            <div class="row wrapper">
+                <div>
+                    <form class="form-inline" ng-submit="showCase.addUser()">
+                        <table datatable id="userList" dt-dataset="dtDataset" dt-options="dtOptions" dt-columns="dtColumns"
+                               class="table table-striped table-bordered">
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
