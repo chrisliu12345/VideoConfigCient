@@ -136,7 +136,12 @@
             </div>
 
             <div class="col-md-9">
-                <input type="text" class="form-control" ng-model="updown.SignalTransportType" >
+               <!-- <input type="text" class="form-control" ng-model="updown.SignalTransportType" >-->
+                <select class="form-control" ng-model="updown.SignalTransportType">
+                    <option value=0>UDP</option>
+                    <option value=1>TCP</option>
+
+                </select>
             </div>
         </div>
 
@@ -146,7 +151,11 @@
             </div>
 
             <div class="col-md-9">
-                <input type="text" class="form-control" ng-model="updown.StreamTransportType" >
+                <!--<input type="text" class="form-control" ng-model="updown.StreamTransportType" >-->
+                <select class="form-control" ng-model="updown.StreamTransportType">
+                    <option value=0>UDP</option>
+                    <option value=1>TCP</option>
+                </select>
             </div>
         </div>
 
@@ -159,7 +168,6 @@
                 <input type="text" class="form-control" ng-model="updown.UsrID" >
             </div>
         </div>
-
         <div class="form-group">
             <div class="col-md-3">
                 <label>{{'fanyi442'|translate}}</label>
@@ -175,8 +183,16 @@
                 <label>{{'fanyi436'|translate}}</label>
             </div>
 
-            <div class="col-md-9">
+           <!-- <div class="col-md-9">
                 <input type="text" class="form-control" ng-model="updown.ConnectState" >
+            </div>-->
+            <div class="col-md-9">
+                <select class="form-control" ng-model="updown.ConnectState">
+                    <option value=0>无对接</option>
+                    <option value=1>上联</option>
+                    <option value=2>下联</option>
+                    <option value=3>互联</option>
+                </select>
             </div>
         </div>
         <div class="form-group">

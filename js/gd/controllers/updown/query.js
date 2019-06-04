@@ -17,7 +17,7 @@ app.controller('QueryUpDownCtrl', function ($scope, $modalInstance, $state, $htt
     this.submit = function () {
 
         $http({
-            url: "http://"+url+":5066/Catalog/Platform?CatalogType="+$scope.QueryOrSubscribe+"&platformid="+$scope.selectQueryNodes+"&startTime=&endTime",
+            url: "http://"+url+":5066/Catalog?CatalogType="+$scope.QueryOrSubscribe+"&platformid="+$scope.selectQueryNodes+"&startTime=&endTime",
             method: 'GET',
         }).success(function () {
             alert("查询信息已发送！预计数据传输速度为1000条/分钟");
