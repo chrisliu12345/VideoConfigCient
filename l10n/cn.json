@@ -100,7 +100,7 @@
     "platName":"平台名称",
     "ipaddress":"IP地址",
     "port":"端口",
-    "dockmeth":"控制类型",
+    "dockmeth":"对接方式",
     "useraddress":"用户及地址",
     "online":"在线状态",
     "videoplan":"录像计划ID",

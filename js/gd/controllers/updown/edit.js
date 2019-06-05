@@ -27,6 +27,7 @@ app.controller('EditUpDownCtrl', function ($scope, $resource, $http, $state, $mo
 
           $http.post("/ma/updown/updateUpDown", $scope.updown)
                 .success(function () {
+                    alert("更新成功！");
                     $modalInstance.dismiss('cancel');
                     $state.go('app.updown', {}, {reload: true});
                 });
